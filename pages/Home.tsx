@@ -6,16 +6,16 @@ const Home: React.FC = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const slides = [
     {
-      url: "https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&q=80&w=1200",
-      alt: "Professional Consultation"
+      url: "https://i.ibb.co/nqJgVknD/aditya-ali-l4bflp-Akj-JY-unsplash.jpg",
+      alt: "Entrust Professional Excellence"
     },
     {
-      url: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=1200",
-      alt: "Modern Business Environment"
+      url: "https://i.ibb.co/zTpDnykH/tamara-govedarovic-Kz-Gvpd-T-B0k-unsplash.jpg",
+      alt: "Modern Texas Business Environment"
     },
     {
-      url: "https://images.unsplash.com/photo-1511632765486-a01980e01a18?auto=format&fit=crop&q=80&w=1200",
-      alt: "Family Security"
+      url: "https://i.ibb.co/Ftng3sB/justus-menke-s-Hf-Pn-QKI9y-I-unsplash.jpg",
+      alt: "Premium Family & Lifestyle Security"
     }
   ];
 
