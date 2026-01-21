@@ -45,7 +45,7 @@ const Footer: React.FC = () => {
             <li><Link to="/commercial/property" className="hover:text-blue-700 transition-colors">Commercial Property</Link></li>
             <li><Link to="/commercial/workers-comp" className="hover:text-blue-700 transition-colors">Workers' Comp</Link></li>
             <li><Link to="/commercial/bop" className="hover:text-blue-700 transition-colors">Business Owners Policy</Link></li>
-            <li><Link to="/bookkeeping-payroll" className="hover:text-blue-700 transition-colors font-semibold">Bookkeeping & Payroll</Link></li>
+            <li><Link to="/bookkeeping-payroll" className="hover:text-blue-700 transition-colors">Bookkeeping & Payroll</Link></li>
           </ul>
         </div>
 

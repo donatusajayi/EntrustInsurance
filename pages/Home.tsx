@@ -1,30 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Star, Users, Briefcase, Shield, Globe } from 'lucide-react';
+import { ArrowRight, Users, Briefcase, Shield, Globe } from 'lucide-react';
 
 const Home: React.FC = () => {
-  const [currentSlide, setCurrentSlide] = useState(0);
-  const slides = [
-    {
-      url: "https://i.ibb.co/nqJgVknD/aditya-ali-l4bflp-Akj-JY-unsplash.jpg",
-      alt: "Entrust Professional Excellence"
-    },
-    {
-      url: "https://i.ibb.co/zTpDnykH/tamara-govedarovic-Kz-Gvpd-T-B0k-unsplash.jpg",
-      alt: "Modern Texas Business Environment"
-    },
-    {
-      url: "https://i.ibb.co/Ftng3sB/justus-menke-s-Hf-Pn-QKI9y-I-unsplash.jpg",
-      alt: "Premium Family & Lifestyle Security"
-    }
-  ];
-
+  const HERO_IMAGE = "https://i.ibb.co/nqJgVknD/aditya-ali-l4bflp-Akj-JY-unsplash.jpg";
   const QUOTE_URL = "https://secure.consumerratequotes.com/ConsumerV2?id=64437&lob=auto+home";
-
-  useEffect(() => {
-    const timer = setInterval(() => setCurrentSlide((prev) => (prev + 1) % slides.length), 8000);
-    return () => clearInterval(timer);
-  }, [slides.length]);
 
   return (
     <div className="bg-white min-h-screen">
@@ -70,16 +50,12 @@ const Home: React.FC = () => {
 
           <div className="lg:col-span-6 relative animate-scale-in delay-200">
             <div className="relative rounded-[3rem] overflow-hidden shadow-2xl aspect-[4/5] bg-gray-100">
-              {slides.map((slide, index) => (
-                <div
-                  key={index}
-                  className={`absolute inset-0 transition-all duration-1000 ease-in-out transform ${
-                    index === currentSlide ? 'opacity-100 scale-100' : 'opacity-0 scale-105 pointer-events-none'
-                  }`}
-                >
-                  <img src={slide.url} alt={slide.alt} className="w-full h-full object-cover" />
-                </div>
-              ))}
+              <img 
+                src={HERO_IMAGE} 
+                alt="Entrust Insurance Excellence" 
+                className="w-full h-full object-cover" 
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent pointer-events-none"></div>
             </div>
           </div>
         </div>
@@ -104,28 +80,28 @@ const Home: React.FC = () => {
                 <div className="space-y-2">
                   <Globe className="w-6 h-6 text-green-600" />
                   <h4 className="font-bold text-gray-900 serif">Local Reach</h4>
-                  <p className="text-xs text-gray-400">Richardson rooted.</p>
+                  <p className="text-xs text-gray-400">Texas Rooted</p>
                 </div>
               </div>
             </div>
             
             <div className="grid grid-cols-2 gap-4">
-              <Link to="/personal" className="group p-8 bg-white rounded-[2.5rem] border border-gray-100 card-hover aspect-square flex flex-col justify-between">
-                <div className="w-12 h-12 bg-green-50 rounded-xl flex items-center justify-center text-green-700 group-hover:bg-green-600 group-hover:text-white transition-all">
+              <Link to="/personal" className="group p-8 bg-gradient-to-br from-emerald-50 via-white to-white rounded-[2.5rem] border border-emerald-100/50 card-hover aspect-square flex flex-col justify-between shadow-sm">
+                <div className="w-12 h-12 bg-white rounded-xl shadow-md flex items-center justify-center text-emerald-700 group-hover:bg-emerald-600 group-hover:text-white transition-all">
                   <Users className="w-5 h-5" />
                 </div>
                 <div>
-                  <h3 className="text-xl font-bold serif">Personal</h3>
-                  <p className="text-[9px] text-gray-400 font-bold uppercase tracking-widest mt-1">Home & Auto</p>
+                  <h3 className="text-xl font-bold serif text-emerald-900">Personal</h3>
+                  <p className="text-[9px] text-emerald-600/60 font-bold uppercase tracking-widest mt-1">Home & Auto</p>
                 </div>
               </Link>
-              <Link to="/commercial" className="group p-8 bg-white rounded-[2.5rem] border border-gray-100 card-hover aspect-square flex flex-col justify-between mt-8">
-                <div className="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center text-blue-700 group-hover:bg-blue-600 group-hover:text-white transition-all">
+              <Link to="/commercial" className="group p-8 bg-gradient-to-br from-blue-50 via-white to-white rounded-[2.5rem] border border-blue-100/50 card-hover aspect-square flex flex-col justify-between mt-8 shadow-sm">
+                <div className="w-12 h-12 bg-white rounded-xl shadow-md flex items-center justify-center text-blue-700 group-hover:bg-blue-600 group-hover:text-white transition-all">
                   <Briefcase className="w-5 h-5" />
                 </div>
                 <div>
-                  <h3 className="text-xl font-bold serif">Business</h3>
-                  <p className="text-[9px] text-gray-400 font-bold uppercase tracking-widest mt-1">Commercial Risk</p>
+                  <h3 className="text-xl font-bold serif text-blue-900">Business</h3>
+                  <p className="text-[9px] text-blue-600/60 font-bold uppercase tracking-widest mt-1">Commercial Risk</p>
                 </div>
               </Link>
             </div>
