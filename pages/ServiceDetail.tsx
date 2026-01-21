@@ -1,189 +1,199 @@
 import React from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { Phone, Check, ArrowLeft, ShieldCheck, Zap, Globe, AlertCircle, Building, Users, Truck, FileText, Calculator, Map, Compass } from 'lucide-react';
+import { Phone, Check, ArrowLeft, ShieldCheck, Zap, Globe, AlertCircle, Building, Users, Truck, Calculator, Compass, Umbrella, Heart, Activity, ShieldAlert, Award } from 'lucide-react';
 
 interface ServiceContent {
   headline: string;
   mainBody: string;
   whyMatters: string;
   solutions: { title: string; desc: string }[];
-  cta?: string;
-  icon?: any;
+  icon: React.ReactNode;
 }
 
 const ServiceDetail: React.FC<{ category: 'personal' | 'commercial' | 'financial' }> = ({ category }) => {
   const { type } = useParams<{ type: string }>();
 
   const isBlueCategory = category === 'commercial' || category === 'financial';
-  const brandColor = isBlueCategory ? 'blue-700' : '[#006838]';
-  const brandBg = isBlueCategory ? 'blue-50' : 'green-50';
-  const brandBorder = isBlueCategory ? 'blue-100' : 'green-100';
+
+  const styles = {
+    text: isBlueCategory ? 'text-blue-700' : 'text-[#006838]',
+    bg: isBlueCategory ? 'bg-blue-50' : 'bg-green-50',
+    border: isBlueCategory ? 'border-blue-100' : 'border-green-100',
+    hover: isBlueCategory ? 'hover:bg-blue-700' : 'hover:bg-[#006838]'
+  };
 
   const data: Record<string, ServiceContent> = {
     'auto': {
-      headline: "Auto Insurance That Keeps You Moving Forward",
-      mainBody: "Your vehicle is more than transportation—it's your connection to work, family, and the things you love.",
-      whyMatters: "The right policy goes beyond legal requirements. It protects you from financial devastation after an unexpected accident.",
+      headline: "Auto Insurance Built for Texas Roads",
+      mainBody: "Your commute across North Texas deserves more than just a standard policy. We provide high-limit liability and specialized coverage for modern mobility.",
+      whyMatters: "Texas law requires liability, but that's just the baseline. True protection covers you against uninsured drivers and severe weather damage.",
       solutions: [
-        { title: "Liability Coverage", desc: "Covers bodily injury and property damage you cause to others." },
-        { title: "Collision Coverage", desc: "Pays for damage to your vehicle after an accident." },
-        { title: "Comprehensive Coverage", desc: "Protects against theft, fire, and weather damage." },
-        { title: "Uninsured Motorist", desc: "Protects you if hit by someone without adequate coverage." }
+        { title: "Standard Liability", desc: "Covers bodily injury and property damage you cause to others." },
+        { title: "Collision & Comprehensive", desc: "Protects your vehicle from accidents, hail, and theft." },
+        { title: "Uninsured Motorist", desc: "Essential for North Texas, covering you if someone else is underinsured." }
       ],
       icon: <Truck className="w-12 h-12" />
     },
     'homeowners': {
-      headline: "Protecting Your Home Sweet Home",
-      mainBody: "Your home is likely your most valuable asset and the center of your family's life.",
-      whyMatters: "Weather can be severe and unpredictable. We'll ensure your policy is built to withstand modern challenges.",
+      headline: "Safeguarding Your North Texas Estate",
+      mainBody: "Your home is your sanctuary. From Richardson to Plano, we help protect local property values against unique regional risks.",
+      whyMatters: "Hail and wind damage are frequent in DFW. We ensure your policy has appropriate deductibles and full replacement cost for roofs.",
       solutions: [
-        { title: "Dwelling Coverage", desc: "Protects the structure from fire, wind, and storm damage." },
-        { title: "Personal Property", desc: "Covers your furniture, electronics, and clothing." },
-        { title: "Liability Protection", desc: "Shields you if someone is injured on your property." },
-        { title: "Flood Insurance", desc: "Standard policies don't cover floods—we strongly recommend separate coverage." }
+        { title: "Dwelling Coverage", desc: "Rebuild your home at today's construction costs." },
+        { title: "Personal Property", desc: "Scheduled coverage for jewelry, fine art, and electronics." },
+        { title: "Liability Protection", desc: "Shields your global assets if someone is injured on your land." }
       ],
       icon: <Building className="w-12 h-12" />
     },
     'life': {
-      headline: "Securing Your Family's Future, No Matter What",
-      mainBody: "Life insurance isn't about you—it's about the people you love.",
-      whyMatters: "If others depend on your income, you need life insurance. It replaces income, pays off debts, and funds education.",
+      headline: "Securing the Legacy of Your Family",
+      mainBody: "Insurance is not for you—it's for the people who matter most. We design term and permanent structures for lifelong peace of mind.",
+      whyMatters: "Life insurance provides the immediate capital your family needs to maintain their lifestyle after a loss.",
       solutions: [
-        { title: "Term Life", desc: "Affordable coverage for a specific period (10, 20, or 30 years)." },
-        { title: "Whole Life", desc: "Permanent coverage that builds cash value over time." },
-        { title: "Universal Life", desc: "Flexible permanent coverage that adjusts as needs change." },
-        { title: "Final Expense", desc: "Designed to cover funeral costs and end-of-life expenses." }
+        { title: "Term Life", desc: "Pure protection for 10, 20, or 30 years at very affordable rates." },
+        { title: "Whole Life", desc: "Permanent protection that builds guaranteed cash value." },
+        { title: "Universal Life", desc: "Flexible coverage that adapts as your financial goals evolve." }
       ],
-      icon: <ShieldCheck className="w-12 h-12" />
+      icon: <Heart className="w-12 h-12" />
     },
     'health': {
-      headline: "Your Health Is Your Wealth—Protect Both",
-      mainBody: "Quality health insurance ensures you and your family can access care without facing financial ruin.",
-      whyMatters: "Medical expenses are one of the leading causes of financial hardship. We help you navigate complex plans and Medicare.",
+      headline: "Strategic Health Coverage & Medicare",
+      mainBody: "Navigating the modern healthcare landscape requires expert guidance. We help you find plans that match your doctors and your budget.",
+      whyMatters: "Medical debt is the leading cause of financial distress. Proper planning ensures access to the best Texas medical networks.",
       solutions: [
-        { title: "Individual & Family Plans", desc: "Marketplace and private carrier options tailored for your household." },
-        { title: "Medicare Solutions", desc: "Understanding Advantage, Supplements, and Part D." },
-        { title: "Dental & Vision", desc: "Affordable plans for routine preventive care." }
+        { title: "Individual & Family", desc: "Off-marketplace and private plans tailored for your household." },
+        { title: "Medicare Advantage", desc: "Optimizing your benefits when you reach age 65." },
+        { title: "Dental & Vision", desc: "Essential supplemental care for your overall wellness." }
       ],
-      icon: <Zap className="w-12 h-12" />
+      icon: <Activity className="w-12 h-12" />
+    },
+    'umbrella': {
+      headline: "The Ultimate Layer of Asset Protection",
+      mainBody: "In a litigious world, your standard auto and home limits might not be enough. Umbrella insurance extends your protection by millions.",
+      whyMatters: "A single major accident can exceed your primary policy. Umbrella protection ensures your savings and future earnings stay yours.",
+      solutions: [
+        { title: "Extended Liability", desc: "Limits starting at $1M extending up to $50M+." },
+        { title: "Worldwide Coverage", desc: "Protection that travels with you anywhere in the world." },
+        { title: "Defense Cost Coverage", desc: "Legal fees are covered outside of your limit." }
+      ],
+      icon: <Umbrella className="w-12 h-12" />
     },
     'general-liability': {
-      headline: "Foundation of Business Protection",
-      mainBody: "General Liability Insurance is the cornerstone of every business insurance program.",
-      whyMatters: "Protects your company from the most common risks: customer injuries, property damage, and advertising claims.",
+      headline: "Institutional Business Protection",
+      mainBody: "Protect your commercial enterprise from common legal threats. Our General Liability plans are built for the Texas business environment.",
+      whyMatters: "A single customer slip or property damage claim can disrupt your operations. We ensure you stay resilient.",
       solutions: [
-        { title: "Bodily Injury", desc: "Covers medical expenses and legal fees for on-premise injuries." },
-        { title: "Property Damage", desc: "Covers damage your business causes to someone else's property." },
-        { title: "Advertising Injury", desc: "Protection against libel, slander, or copyright infringement." }
+        { title: "Bodily Injury", desc: "Medical expenses for guests injured on your premises." },
+        { title: "Property Damage", desc: "Damage caused by your business to third-party assets." },
+        { title: "Personal Injury", desc: "Protection against libel, slander, and copyright claims." }
       ],
       icon: <Building className="w-12 h-12" />
     },
     'property': {
-      headline: "Protect Your Business Assets from the Unexpected",
-      mainBody: "Your business property represents a significant investment of time and capital.",
-      whyMatters: "Ensures building, equipment, inventory, and furnishings are protected from damage or loss.",
+      headline: "Commercial Property Safeguards",
+      mainBody: "Your physical assets are the engine of your business. We protect your buildings, inventory, and equipment against Texas-scale risks.",
+      whyMatters: "Replacement costs are rising. We audit your valuations to ensure you aren't underinsured.",
       solutions: [
-        { title: "Building Coverage", desc: "Structure protection from fire, storms, and vandalism." },
-        { title: "Personal Property", desc: "Protects equipment, furniture, and inventory." },
-        { title: "Business Interruption", desc: "Replaces lost revenue during temporary closures." }
+        { title: "Replacement Cost", desc: "Ensures you can rebuild at today's market prices." },
+        { title: "Equipment Breakdown", desc: "Covers mechanical and electrical failure costs." },
+        { title: "Business Income", desc: "Replaces revenue lost while your property is being restored." }
       ],
       icon: <Building className="w-12 h-12" />
     },
     'workers-comp': {
-      headline: "Protect Your Employees and Your Business",
-      mainBody: "Provides essential protection for both your employees and your company.",
-      whyMatters: "Required for most businesses, it covers medical care and wage replacement for work-related injuries.",
+      headline: "Texas Workers' Compensation Expertise",
+      mainBody: "Protect your employees and your balance sheet. We manage the complexities of work-related injury coverage for DFW employers.",
+      whyMatters: "Providing medical care and wage replacement is essential for maintaining a loyal, productive workforce.",
       solutions: [
-        { title: "Medical Expenses", desc: "Necessary treatment for work-related injuries." },
-        { title: "Lost Wages", desc: "Partial wage replacement while an employee cannot work." },
-        { title: "Legal Protection", desc: "Immunity from most employee lawsuits related to injuries." }
+        { title: "Medical Benefits", desc: "Full coverage for workplace-related treatments." },
+        { title: "Wage Replacement", desc: "Financial support for staff during their recovery." },
+        { title: "Safety Program Audit", desc: "Helping you reduce premiums through better safety protocols." }
       ],
       icon: <Users className="w-12 h-12" />
     },
-    'tax-filing': {
-      headline: "Strategic Tax Preparation & Planning",
-      mainBody: "Our financial experts provide comprehensive tax services for individuals and businesses.",
-      whyMatters: "Strategic planning ensures compliance while identifying opportunities for significant savings and tax efficiency.",
+    'bop': {
+      headline: "Business Owners Policy (BOP)",
+      mainBody: "Ideal for small to mid-sized businesses, combining critical coverages into one streamlined package.",
+      whyMatters: "Combining Liability and Property coverage is more cost-effective and ensures there are no gaps in your basic business protection.",
       solutions: [
-        { title: "Individual Returns", desc: "Precise filing for personal income tax with an emphasis on deductions." },
-        { title: "Business Tax Compliance", desc: "Corporate filing, K-1s, and complex partnership structures." },
-        { title: "Strategic Planning", desc: "Year-round advice to minimize future tax liabilities legally." },
-        { title: "Audit Support", desc: "Professional representation and documentation for tax inquiries." }
+        { title: "Combined Liability", desc: "Covers common risks like slips, falls, and advertising injury." },
+        { title: "Content Coverage", desc: "Protects your office equipment, inventory, and furniture." },
+        { title: "Business Income", desc: "Provides cash flow if your operations are halted by a covered loss." }
       ],
-      icon: <Calculator className="w-12 h-12" />
+      icon: <ShieldAlert className="w-12 h-12" />
     },
-    'travel-services': {
-      headline: "Bespoke Travel Management & Services",
-      mainBody: "Our travel agency arm provides world-class management for your leisure and corporate journeys.",
-      whyMatters: "Exceptional travel requires expert coordination. We handle every detail, ensuring seamless experiences across the globe.",
+    'professional-liability': {
+      headline: "Professional Liability (E&O)",
+      mainBody: "Protect your expertise. Errors and Omissions coverage is vital for anyone providing professional advice or services.",
+      whyMatters: "Even if you did nothing wrong, defending against a claim of professional negligence can be financially draining.",
       solutions: [
-        { title: "Luxury Vacation Planning", desc: "Customized leisure travel itineraries with exclusive perks and access." },
-        { title: "Corporate Travel Solutions", desc: "Efficient business travel management focused on cost and comfort." },
-        { title: "International Coordination", desc: "Handling complex visa requirements, private transfers, and stays." },
-        { title: "Concierge Support", desc: "24/7 assistance for travelers, ensuring peace of mind on the road." }
+        { title: "Negligence Defense", desc: "Covers legal fees and settlements resulting from service errors." },
+        { title: "Copyright Infringement", desc: "Protection against claims of unintentional intellectual property use." },
+        { title: "Cyber Extension", desc: "Optional coverage for data breaches related to professional services." }
       ],
-      icon: <Compass className="w-12 h-12" />
+      icon: <Award className="w-12 h-12" />
     }
   };
 
   const content = data[type || ''] || {
-    headline: "Comprehensive Protection",
-    mainBody: "Tailored coverage for your unique needs.",
-    whyMatters: "Understanding your risks is the first step toward true security.",
-    solutions: [{ title: "Custom Quote", desc: "Contact our team to speak with an agent." }]
+    headline: "Professional Insurance Solutions",
+    mainBody: "Our team provides tailored risk management strategies for individuals and business leaders throughout Texas.",
+    whyMatters: "Every client faces a unique set of risks. We audit your existing coverage to find gaps and optimize your protection.",
+    solutions: [
+      { title: "Expert Consultation", desc: "Speak with a licensed advisor today to review your requirements." },
+      { title: "Carrier Comparison", desc: "We compare multiple top-rated carriers to ensure you get optimal value." }
+    ],
+    icon: <ShieldCheck className="w-12 h-12" />
   };
 
   return (
     <div className="pt-32 pb-24 animate-fade-in-up">
-      <div className="max-w-7_xl mx-auto px-6">
-        <Link to={`/${category}`} className={`inline-flex items-center text-[10px] font-bold uppercase tracking-widest text-${brandColor} mb-8 md:mb-12 hover:translate-x-[-4px] transition-transform`}>
-          <ArrowLeft className="w-4 h-4 mr-2" /> Back to {category === 'financial' ? 'Financial Services' : category}
+      <div className="max-w-7xl mx-auto px-6">
+        <Link to={`/${category}`} className={`inline-flex items-center text-[10px] font-bold uppercase tracking-widest ${styles.text} mb-12 hover:translate-x-[-4px] transition-transform`}>
+          <ArrowLeft className="w-4 h-4 mr-2" /> Back to {category}
         </Link>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center mb-16 md:mb-32">
-          <div className="space-y-6 md:space-y-8">
-            <h1 className="text-3xl md:text-5_xl lg:text-6xl font-bold text-gray-900 serif leading-tight">{content.headline}</h1>
-            <p className="text-base md:text-xl text-gray-500 font-light leading-relaxed">{content.mainBody}</p>
-            <div className={`p-6 md:p-8 bg-${brandBg}/30 rounded-2_xl md:rounded-[2.5rem] border border-${brandBorder}`}>
-               <h3 className="font-bold text-gray-900 mb-2 flex items-center text-sm md:text-base">
-                 <AlertCircle className={`w-5 h-5 mr-2 text-${brandColor} shrink-0`} /> Why it matters
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center mb-32">
+          <div className="space-y-8">
+            <h1 className="text-4xl md:text-6xl font-bold text-gray-900 serif leading-tight">{content.headline}</h1>
+            <p className="text-xl text-gray-500 font-light leading-relaxed">{content.mainBody}</p>
+            <div className={`p-8 ${styles.bg} bg-opacity-30 rounded-[2.5rem] border ${styles.border}`}>
+               <h3 className="font-bold text-gray-900 mb-2 flex items-center">
+                 <AlertCircle className={`w-5 h-5 mr-2 ${styles.text}`} /> The Distinction
                </h3>
-               <p className="text-xs md:text-sm text-gray-500 font-light leading-relaxed">{content.whyMatters}</p>
+               <p className="text-sm text-gray-500 font-light leading-relaxed">{content.whyMatters}</p>
             </div>
           </div>
           <div className="flex justify-center lg:justify-end">
-            <div className={`w-full max-w-xs md:max-w-md aspect-square bg-${brandBg}/20 rounded-3_xl lg:rounded-[4rem] flex items-center justify-center p-12 md:p-20`}>
-              {React.cloneElement(content.icon || <ShieldCheck />, { className: `w-full h-full text-${brandColor}` })}
+            <div className={`w-full max-w-md aspect-square ${styles.bg} bg-opacity-20 rounded-[4rem] flex items-center justify-center p-20`}>
+              {React.cloneElement(content.icon as React.ReactElement, { className: `w-full h-full ${styles.text}` })}
             </div>
           </div>
         </div>
 
-        <h2 className="text-2_xl md:text-3_xl font-bold serif text-gray-900 mb-8 md:mb-12 text-center">Complete Protection Strategy</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8 mb-24 md:mb-32">
+        <h2 className="text-3xl font-bold serif text-gray-900 mb-12 text-center">Core Protection Strategies</h2>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-32">
           {content.solutions.map((s, idx) => (
-            <div key={idx} className="p-8 md:p-10 bg-white border border-gray-100 rounded-3_xl lg:rounded-[3rem] hover:shadow-xl transition-all group flex flex-col">
-              <div className={`w-10 h-10 bg-${brandBg} rounded-xl flex items-center justify-center text-${brandColor} mb-6 group-hover:bg-blue-700 group-hover:text-white transition-all shrink-0`}>
+            <div key={idx} className="p-10 bg-white border border-gray-100 rounded-[3rem] hover:shadow-xl transition-all group flex flex-col h-full">
+              <div className={`w-10 h-10 ${styles.bg} rounded-xl flex items-center justify-center ${styles.text} mb-6 group-hover:bg-blue-700 group-hover:text-white transition-all`}>
                 <Check className="w-5 h-5" />
               </div>
-              <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-4">{s.title}</h3>
+              <h3 className="text-xl font-bold text-gray-900 mb-4">{s.title}</h3>
               <p className="text-gray-500 text-sm font-light leading-relaxed flex-grow">{s.desc}</p>
             </div>
           ))}
         </div>
 
-        <section className="bg-gray-900 rounded-3_xl lg:rounded-[4rem] p-8 md:p-16 lg:p-24 text-white text-center">
-          <div className="max-w-2_xl mx-auto space-y-8 md:space-y-10">
-            <h2 className="text-2_xl md:text-4_xl font-bold serif">Ready for a {category === 'financial' ? 'Consultation?' : (category === 'personal' ? 'Free Quote?' : 'Consultation?') }</h2>
-            <p className={`${isBlueCategory ? 'text-blue-100/70' : 'text-green-100/70'} font-light text-base md:text-lg`}>Speak with an expert advisor who understands your unique needs.</p>
-            <div className="flex flex-col sm:flex-row gap-4 md:gap-6 justify-center pt-4">
-              <Link 
-                to={category === 'personal' ? "/quote" : "/contact"} 
-                className={`px-8 md:px-10 py-4 md:py-5 bg-white text-gray-900 rounded-xl md:rounded-2_xl font-bold uppercase tracking-widest text-[10px] hover:bg-${isBlueCategory ? 'blue-700' : '[#006838]'} hover:text-white transition-all`}
-              >
-                {category === 'personal' ? 'Get a Quote' : 'Inquire Online'}
+        <section className="bg-gray-900 rounded-[4rem] p-16 lg:p-24 text-white text-center">
+          <div className="max-w-2xl mx-auto space-y-10">
+            <h2 className="text-4xl font-bold serif">Protecting Your World.</h2>
+            <p className="text-blue-100/70 font-light text-lg">Speak with an independent Entrust advisor to audit your existing coverage.</p>
+            <div className="flex flex-col sm:flex-row gap-6 justify-center pt-4">
+              <Link to="/contact" className={`px-10 py-5 bg-white text-gray-900 rounded-2xl font-bold uppercase tracking-widest text-[10px] ${styles.hover} hover:text-white transition-all`}>
+                Contact Our Team
               </Link>
-              <Link to="/contact" className="px-8 md:px-10 py-4 md:py-5 border border-white/20 text-white rounded-xl md:rounded-2_xl font-bold uppercase tracking-widest text-[10px] hover:bg-white/10 transition-all">
-                Contact Support
+              <Link to="/claims" className="px-10 py-5 border border-white/20 text-white rounded-2xl font-bold uppercase tracking-widest text-[10px] hover:bg-white/10 transition-all">
+                Claims Support
               </Link>
             </div>
           </div>

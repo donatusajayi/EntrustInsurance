@@ -1,22 +1,22 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { GoogleGenAI } from '@google/genai';
-// Fix: Added Calculator and Plane to the imports to resolve "Cannot find name" errors.
-import { MessageSquare, X, Send, Trash2, ShieldCheck, User, Heart, Sparkles, HelpCircle, Phone, Mail, MapPin, Sparkle, Calculator, Plane } from 'lucide-react';
+import { MessageSquare, X, Send, Trash2, ShieldCheck, User, Heart, Sparkles, HelpCircle, Phone, Mail, MapPin, Sparkle, Calculator, Plane, Coins } from 'lucide-react';
 
 const STORAGE_KEY = 'entrust_concierge_history';
 
-const SYSTEM_INSTRUCTION = `You are the Entrust Concierge, a minimalist and professional assistant for Entrust Insurance and Financial Services. We provide a triangle of premium services: **Insurance**, **Tax Filing**, and **Travel Concierge**.
+const SYSTEM_INSTRUCTION = `You are the Entrust Concierge, a minimalist and professional assistant for Entrust Insurance and Financial Services. We provide a quartet of premium services: **Insurance**, **Tax Services**, **Bookkeeping & Payroll**, and **Travel Concierge**.
 
 CORE SERVICES KNOWLEDGE:
 1. **Insurance**: Premier Texas protection for personal (Auto, Home, Life, Health) and commercial (GL, Property, Workers Comp, Cyber) needs.
-2. **Tax Filing**: Professional tax preparation for individuals and business compliance. We handle IRS filing, K-1s, audit support, and strategic tax planning for Texas enterprises.
-3. **Travel Concierge**: A full-service travel agency. We specialize in luxury leisure (five-star resorts, private transfers) and corporate mobility for global professionals.
+2. **Tax Services**: Professional tax preparation for individuals and business compliance. We handle IRS filing, K-1s, audit support, and strategic tax planning for Texas enterprises.
+3. **Bookkeeping & Payroll**: Full-cycle bookkeeping, ledger management, monthly financial reporting, and automated payroll solutions for Texas businesses.
+4. **Travel Concierge**: A full-service travel agency arm (listed in our footer). We specialize in luxury leisure (five-star resorts, private transfers) and corporate mobility for global professionals.
 
 CRITICAL RULES:
 1. BE CONCISE: Aim for 1-3 sentences for 90% of interactions.
 2. QUOTE/INQUIRY PROTOCOL:
    - For **Insurance** price/quotes: ALWAYS direct them to the "Get a Quote" button in the top navigation bar.
-   - For **Tax Filing** or **Travel**: Direct them to the respective page in the menu bar or recommend booking a consultation via the Contact page.
+   - For **Tax Services**, **Bookkeeping**, or **Travel**: Direct them to the respective page in the menu bar or recommend booking a consultation via the Contact page.
 3. EXPERT HANDOFF: Only provide direct phone, email, or address if:
    - The user explicitly asks for an agent or a human.
    - The question is too complex for you to answer.
@@ -226,9 +226,9 @@ const ChatBot: React.FC = () => {
   };
 
   const quickActions = [
-    { label: 'Insurance, Tax, or Travel?', icon: <Sparkles className="w-3 h-3" />, primary: true },
-    { label: 'Book a Tax Review', icon: <Calculator className="w-3 h-3" /> },
-    { label: 'Travel Concierge', icon: <Plane className="w-3 h-3" /> },
+    { label: 'Insurance, Taxes, or Payroll?', icon: <Sparkles className="w-3 h-3" />, primary: true },
+    { label: 'Bookkeeping Support', icon: <Coins className="w-3 h-3" /> },
+    { label: 'Tax Services', icon: <Calculator className="w-3 h-3" /> },
   ];
 
   return (
@@ -251,7 +251,7 @@ const ChatBot: React.FC = () => {
                   <Sparkles className="w-3 h-3" />
                 </div>
                 <p className="text-sm font-bold text-gray-900 leading-tight group-hover:text-blue-700 transition-colors serif italic">
-                  "Hello! Need help with insurance, taxes, or planning a trip?"
+                  "Hello! Need help with insurance, tax services, or payroll?"
                 </p>
                 <div className="flex items-center text-[10px] font-bold text-blue-600">
                   Chat Now <Sparkles className="ml-1 w-3 h-3 animate-pulse" />
@@ -299,7 +299,7 @@ const ChatBot: React.FC = () => {
               <div className="text-center space-y-8 py-8">
                 <div className="space-y-3">
                   <h4 className="text-2xl font-bold serif text-gray-900 leading-tight">Elite Protection & Concierge.</h4>
-                  <p className="text-sm text-gray-500 font-light max-w-[280px] mx-auto">I'm here to help with your insurance policies, tax filings, or travel arrangements.</p>
+                  <p className="text-sm text-gray-500 font-light max-w-[280px] mx-auto">I'm here to help with your insurance, tax services, or payroll management.</p>
                 </div>
                 <div className="grid grid-cols-1 gap-3 px-4">
                   {quickActions.map((action) => (

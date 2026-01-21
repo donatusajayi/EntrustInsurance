@@ -53,7 +53,7 @@ const Footer: React.FC = () => {
           <h4 className="font-bold text-gray-900 mb-8 uppercase tracking-widest text-[10px]">Quick Links</h4>
           <ul className="space-y-4 text-sm text-gray-500 font-light">
             <li><a href={QUOTE_URL} target="_blank" rel="noopener noreferrer" className="hover:text-blue-700 transition-colors font-semibold">Get a Quote</a></li>
-            <li><Link to="/tax-filing" className="hover:text-blue-700 transition-colors">Tax Filing</Link></li>
+            <li><Link to="/tax-services" className="hover:text-blue-700 transition-colors">Tax Services</Link></li>
             <li><Link to="/travel" className="hover:text-blue-700 transition-colors">Travel Services</Link></li>
             <li><Link to="/claims" className="hover:text-[#006838] transition-colors">File a Claim</Link></li>
             <li><Link to="/contact" className="hover:text-[#006838] transition-colors">Contact Us</Link></li>

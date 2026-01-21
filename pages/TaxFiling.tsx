@@ -2,10 +2,10 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Calculator, CheckCircle, FileText, PieChart, ShieldCheck, ArrowRight, UserCheck, Landmark } from 'lucide-react';
 
-const TaxFiling: React.FC = () => {
+const TaxServices: React.FC = () => {
   const services = [
     {
-      title: "Personal Tax Planning",
+      title: "Individual Tax Planning",
       icon: <FileText className="w-6 h-6" />,
       desc: "Tailored preparation for individuals and high-net-worth families, focusing on maximum deductions and long-term wealth preservation.",
       points: ["W-2 & 1099 Filing", "Investment Income", "Real Estate Deductions", "Generational Planning"]
@@ -34,22 +34,22 @@ const TaxFiling: React.FC = () => {
           </div>
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-gray-900 serif leading-tight">
             Strategic <br />
-            <span className="text-gradient-blue italic font-medium">Tax Intelligence.</span>
+            <span className="text-gradient-blue italic font-medium">Tax Services.</span>
           </h1>
           <p className="text-lg md:text-xl text-gray-500 font-light leading-relaxed max-w-2xl">
-            Beyond insurance, we provide the fiscal clarity needed to navigate the complexities of tax season. Precision filing for modern Texas lifestyles.
+            Beyond insurance, we provide the fiscal clarity needed to navigate the complexities of tax season. Precision services for modern Texas lifestyles and growing enterprises.
           </p>
         </header>
 
         {/* Core Services */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-32">
           {services.map((service, idx) => (
-            <div key={idx} className="p-10 md:p-16 bg-slate-50/50 rounded-[3.5rem] border border-gray-100 group hover:bg-white hover:shadow-2xl transition-all duration-700">
+            <div key={idx} className="p-10 md:p-16 bg-slate-50/50 rounded-[3.5rem] border border-gray-100 group hover:bg-white hover:shadow-2xl transition-all duration-700 flex flex-col h-full">
               <div className="w-14 h-14 bg-white rounded-2xl shadow-sm flex items-center justify-center text-blue-700 mb-8 group-hover:bg-blue-700 group-hover:text-white transition-all">
                 {service.icon}
               </div>
               <h3 className="text-3xl font-bold text-gray-900 serif mb-6">{service.title}</h3>
-              <p className="text-gray-500 font-light leading-relaxed mb-10">{service.desc}</p>
+              <p className="text-gray-500 font-light leading-relaxed mb-10 flex-grow">{service.desc}</p>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {service.points.map((point, i) => (
                   <div key={i} className="flex items-center space-x-3">
@@ -68,9 +68,9 @@ const TaxFiling: React.FC = () => {
           
           <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
             <div className="lg:col-span-5 space-y-8">
-              <h2 className="text-4xl md:text-5xl font-bold serif leading-tight">A Seamless <br />Filing Experience.</h2>
+              <h2 className="text-4xl md:text-5xl font-bold serif leading-tight">A Seamless <br />Experience.</h2>
               <p className="text-blue-100/60 font-light text-lg">
-                We've redesigned the tax process to be as professional and stress-free as our insurance products.
+                We've redesigned the tax process to be as professional and stress-free as our premier insurance products.
               </p>
               <Link to="/contact" className="inline-flex items-center space-x-3 px-8 py-4 bg-white text-gray-900 rounded-xl font-bold uppercase tracking-widest text-[10px] hover:bg-blue-400 hover:text-white transition-all">
                 <span>Book a Consultation</span>
@@ -111,7 +111,7 @@ const TaxFiling: React.FC = () => {
               <PieChart className="w-6 h-6" />
             </div>
             <h4 className="text-lg font-bold text-gray-900 serif">Tax Efficient</h4>
-            <p className="text-xs text-gray-400 font-light leading-relaxed px-4">We look ahead to next year, structuring your finances to minimize future liability.</p>
+            <p className="text-xs text-gray-400 font-light leading-relaxed px-4">We structure your finances to minimize future liability through legal tax-advantaged strategies.</p>
           </div>
         </div>
       </div>
@@ -119,4 +119,4 @@ const TaxFiling: React.FC = () => {
   );
 };
 
-export default TaxFiling;
+export default TaxServices;

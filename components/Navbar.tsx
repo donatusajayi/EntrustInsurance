@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, ChevronDown, Phone, Globe, Calculator, Plane } from 'lucide-react';
+import { Menu, X, ChevronDown, ShieldCheck } from 'lucide-react';
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -26,6 +26,17 @@ const Navbar: React.FC = () => {
     };
   }, []);
 
+  // Sync state with location changes
+  useEffect(() => {
+    setIsOpen(false);
+    setActiveDropdown(null);
+  }, [location.pathname]);
+
+  const handleLinkClick = () => {
+    setActiveDropdown(null);
+    setIsOpen(false);
+  };
+
   const personalLinks = [
     { to: '/personal/auto', label: 'Auto Insurance' },
     { to: '/personal/homeowners', label: 'Homeowners' },
@@ -36,7 +47,7 @@ const Navbar: React.FC = () => {
 
   const commercialLinks = [
     { to: '/commercial/general-liability', label: 'General Liability' },
-    { to: '/commercial/property', label: 'Property' },
+    { to: '/commercial/property', label: 'Property Insurance' },
     { to: '/commercial/bop', label: 'Business Owners' },
     { to: '/commercial/workers-comp', label: 'Workers Comp' },
     { to: '/commercial', label: 'All Commercial' },
@@ -50,7 +61,7 @@ const Navbar: React.FC = () => {
       }`}
     >
       <div className="max-w-[1440px] mx-auto px-6 md:px-10 flex justify-between items-center">
-        <Link to="/" className="flex items-center space-x-4 group origin-left">
+        <Link to="/" onClick={handleLinkClick} className="flex items-center space-x-4 group origin-left">
           <div className="relative">
              <img 
               src="https://i.ibb.co/nNtJYCXL/Entrust-Logo-removebg-preview.png" 
@@ -59,7 +70,7 @@ const Navbar: React.FC = () => {
             />
           </div>
           <div className="flex flex-col">
-            <span className="text-lg md:text-xl font-bold text-gray-900 serif leading-none tracking-tight group-hover:text-blue-700 transition-colors">
+            <span className="text-lg md:text-xl font-bold text-gray-900 serif leading-none tracking-tight">
               Entrust
             </span>
             <span className="text-[9px] font-bold text-gray-400 uppercase tracking-[0.2em] mt-0.5">
@@ -69,8 +80,8 @@ const Navbar: React.FC = () => {
         </Link>
 
         {/* Desktop Menu */}
-        <div className="hidden xl:flex items-center space-x-8 lg:space-x-10">
-          <NavLink to="/" label="Home" active={location.pathname === '/'} />
+        <div className="hidden xl:flex items-center space-x-8">
+          <NavLink to="/" label="Home" active={location.pathname === '/'} onClick={handleLinkClick} />
           
           <Dropdown 
             label="Personal" 
@@ -78,6 +89,7 @@ const Navbar: React.FC = () => {
             active={location.pathname.startsWith('/personal')}
             isOpen={activeDropdown === 'personal'}
             onToggle={() => setActiveDropdown(activeDropdown === 'personal' ? null : 'personal')}
+            onLinkClick={handleLinkClick}
             brandColor="green"
           />
 
@@ -87,25 +99,24 @@ const Navbar: React.FC = () => {
             active={location.pathname.startsWith('/commercial')}
             isOpen={activeDropdown === 'commercial'}
             onToggle={() => setActiveDropdown(activeDropdown === 'commercial' ? null : 'commercial')}
+            onLinkClick={handleLinkClick}
             brandColor="blue"
           />
 
-          <NavLink to="/claims" label="Claims" active={location.pathname === '/claims'} />
-          <NavLink to="/tax-filing" label="Tax Filing" active={location.pathname === '/tax-filing'} />
-          <NavLink to="/travel" label="Travel" active={location.pathname === '/travel'} />
-          <NavLink to="/contact" label="Contact" active={location.pathname === '/contact'} />
+          <NavLink to="/claims" label="Claims" active={location.pathname === '/claims'} onClick={handleLinkClick} />
+          <NavLink to="/tax-services" label="Tax Services" active={location.pathname === '/tax-services'} onClick={handleLinkClick} />
+          <NavLink to="/bookkeeping-payroll" label="Bookkeeping & Payroll" active={location.pathname === '/bookkeeping-payroll'} onClick={handleLinkClick} />
+          <NavLink to="/contact" label="Contact" active={location.pathname === '/contact'} onClick={handleLinkClick} />
 
           <div className="h-6 w-[1px] bg-gray-200 mx-2"></div>
 
           <Link 
             to="/quote" 
+            onClick={handleLinkClick}
             className="group relative flex items-center space-x-2 px-6 py-3 bg-blue-700 text-white rounded-full text-[11px] font-bold uppercase tracking-widest overflow-hidden transition-all hover:bg-blue-800 hover:shadow-xl hover:shadow-blue-200 active:scale-95"
           >
-            <span className="relative z-10 flex items-center space-x-2">
-              <Phone className="w-3.5 h-3.5" />
-              <span>Get a Quote</span>
-            </span>
-            <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-blue-800 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+            <ShieldCheck className="w-3.5 h-3.5" />
+            <span>Get a Quote</span>
           </Link>
         </div>
 
@@ -121,19 +132,16 @@ const Navbar: React.FC = () => {
       {/* Mobile Menu */}
       <div className={`xl:hidden fixed inset-0 top-[72px] bg-white transition-all duration-500 transform ${isOpen ? 'translate-x-0 opacity-100' : 'translate-x-full opacity-0'} overflow-y-auto z-[90]`}>
         <div className="p-8 space-y-8 pb-32">
-          <Link to="/" onClick={() => setIsOpen(false)} className="block text-3xl font-bold text-gray-900 serif">Home</Link>
-          
-          <MobileSection title="Personal Protection" links={personalLinks} brandColor="green" onSelect={() => setIsOpen(false)} />
-          <MobileSection title="Business Solutions" links={commercialLinks} brandColor="blue" onSelect={() => setIsOpen(false)} />
-          
-          <Link to="/claims" onClick={() => setIsOpen(false)} className="block text-3xl font-bold text-gray-900 serif">Claims</Link>
-          <Link to="/tax-filing" onClick={() => setIsOpen(false)} className="block text-3xl font-bold text-gray-900 serif">Tax Filing</Link>
-          <Link to="/travel" onClick={() => setIsOpen(false)} className="block text-3xl font-bold text-gray-900 serif">Travel</Link>
-          <Link to="/contact" onClick={() => setIsOpen(false)} className="block text-3xl font-bold text-gray-900 serif">Contact</Link>
-          
+          <Link to="/" onClick={handleLinkClick} className="block text-3xl font-bold text-gray-900 serif">Home</Link>
+          <MobileSection title="Personal" links={personalLinks} brandColor="green" onSelect={handleLinkClick} />
+          <MobileSection title="Commercial" links={commercialLinks} brandColor="blue" onSelect={handleLinkClick} />
+          <Link to="/claims" onClick={handleLinkClick} className="block text-3xl font-bold text-gray-900 serif">Claims</Link>
+          <Link to="/tax-services" onClick={handleLinkClick} className="block text-3xl font-bold text-gray-900 serif">Tax Services</Link>
+          <Link to="/bookkeeping-payroll" onClick={handleLinkClick} className="block text-3xl font-bold text-gray-900 serif">Bookkeeping & Payroll</Link>
+          <Link to="/contact" onClick={handleLinkClick} className="block text-3xl font-bold text-gray-900 serif">Contact</Link>
           <Link 
             to="/quote" 
-            onClick={() => setIsOpen(false)}
+            onClick={handleLinkClick}
             className="block w-full text-center bg-blue-700 text-white py-5 rounded-2xl font-bold uppercase tracking-widest text-sm shadow-xl shadow-blue-100"
           >
             Start Your Quote
@@ -144,9 +152,10 @@ const Navbar: React.FC = () => {
   );
 };
 
-const NavLink = ({ to, label, active }: { to: string, label: string, active: boolean }) => (
+const NavLink = ({ to, label, active, onClick }: any) => (
   <Link 
     to={to} 
+    onClick={onClick}
     className={`relative py-2 text-[11px] font-bold uppercase tracking-widest transition-all group ${
       active ? 'text-gray-900' : 'text-gray-500 hover:text-gray-900'
     }`}
@@ -156,7 +165,7 @@ const NavLink = ({ to, label, active }: { to: string, label: string, active: boo
   </Link>
 );
 
-const Dropdown = ({ label, links, active, isOpen, onToggle, brandColor }: any) => (
+const Dropdown = ({ label, links, active, isOpen, onToggle, onLinkClick, brandColor }: any) => (
   <div className="relative">
     <button 
       onClick={onToggle}
@@ -173,6 +182,7 @@ const Dropdown = ({ label, links, active, isOpen, onToggle, brandColor }: any) =
           <Link 
             key={link.to} 
             to={link.to} 
+            onClick={onLinkClick}
             className={`px-5 py-3.5 rounded-2xl text-[10px] font-bold uppercase tracking-widest text-gray-500 transition-all hover:translate-x-1 ${
               brandColor === 'green' ? 'hover:bg-green-50 hover:text-green-700' : 'hover:bg-blue-50 hover:text-blue-700'
             }`}

@@ -2,6 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Facebook, Instagram } from 'lucide-react';
 
+const QUOTE_URL = "https://secure.consumerratequotes.com/ConsumerV2?id=64437&lob=auto+home";
+
 const Footer: React.FC = () => {
   return (
     <footer className="bg-white border-t border-gray-50 pt-32 pb-12">
@@ -42,15 +44,17 @@ const Footer: React.FC = () => {
             <li><Link to="/commercial/general-liability" className="hover:text-blue-700 transition-colors">General Liability</Link></li>
             <li><Link to="/commercial/property" className="hover:text-blue-700 transition-colors">Commercial Property</Link></li>
             <li><Link to="/commercial/workers-comp" className="hover:text-blue-700 transition-colors">Workers' Comp</Link></li>
-            <li><Link to="/commercial/professional-liability" className="hover:text-blue-700 transition-colors">Professional Liability</Link></li>
             <li><Link to="/commercial/bop" className="hover:text-blue-700 transition-colors">Business Owners Policy</Link></li>
+            <li><Link to="/bookkeeping-payroll" className="hover:text-blue-700 transition-colors font-semibold">Bookkeeping & Payroll</Link></li>
           </ul>
         </div>
 
         <div>
           <h4 className="font-bold text-gray-900 mb-8 uppercase tracking-widest text-[10px]">Quick Links</h4>
           <ul className="space-y-4 text-sm text-gray-500 font-light">
-            <li><Link to="/quote" className="hover:text-blue-700 transition-colors font-semibold">Get a Quote</Link></li>
+            <li><a href={QUOTE_URL} target="_blank" rel="noopener noreferrer" className="hover:text-blue-700 transition-colors font-semibold">Get a Quote</a></li>
+            <li><Link to="/tax-services" className="hover:text-blue-700 transition-colors">Tax Services</Link></li>
+            <li><Link to="/travel" className="hover:text-blue-700 transition-colors">Travel Services</Link></li>
             <li><Link to="/claims" className="hover:text-[#006838] transition-colors">File a Claim</Link></li>
             <li><Link to="/contact" className="hover:text-[#006838] transition-colors">Contact Us</Link></li>
           </ul>
