@@ -82,10 +82,10 @@ const Claims: React.FC = () => {
       <div className="max-w-7xl mx-auto px-6">
         <header className="max-w-3xl mb-16 md:mb-24 space-y-6 text-center mx-auto">
           <p className="text-[#006838] font-bold uppercase tracking-[0.2em] text-[10px]">Claims Support</p>
-          <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold text-gray-900 serif leading-[1.1]">
+          <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold text-black serif leading-[1.1]">
             Claim Filing.
           </h1>
-          <p className="text-lg text-gray-500 font-light leading-relaxed">
+          <p className="text-lg text-black/70 font-light leading-relaxed">
             For fastest service, we recommend filing your claim directly with your carrier. Select your provider below to visit their official portal.
           </p>
         </header>
@@ -108,11 +108,11 @@ const Claims: React.FC = () => {
                     className="w-full h-full object-contain p-2 md:p-4" 
                   />
                 ) : (
-                  <span className="text-gray-900 font-bold">{carrier.name}</span>
+                  <span className="text-black font-bold">{carrier.name}</span>
                 )}
               </div>
-              <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-1 serif leading-tight">{carrier.name}</h3>
-              <p className="text-[10px] text-gray-400 font-medium uppercase tracking-widest mb-6">Auto Insurance</p>
+              <h3 className="text-lg md:text-xl font-bold text-black mb-1 serif leading-tight">{carrier.name}</h3>
+              <p className="text-[10px] text-black/40 font-medium uppercase tracking-widest mb-6">Auto Insurance</p>
               
               <div className="mt-auto flex items-center text-[9px] md:text-[10px] font-bold uppercase tracking-widest text-[#006838] group-hover:text-[#004e2a]">
                 File Online <ExternalLink className="ml-1.5 w-3 h-3 md:w-3.5 md:h-3.5" />
@@ -129,11 +129,11 @@ const Claims: React.FC = () => {
               <p className="text-green-50 text-sm font-light leading-relaxed mb-8">
                 Not seeing your carrier? Our local team is here to advocate for you during the claims process.
               </p>
-              <a href="tel:4692649199" className="flex items-center space-x-4 p-4 bg-white/10 rounded-xl hover:bg-white/20 transition-all border border-white/10">
+              <a href="tel:2147929658" className="flex items-center space-x-4 p-4 bg-white/10 rounded-xl hover:bg-white/20 transition-all border border-white/10">
                 <Phone className="w-5 h-5 text-green-300" />
                 <div>
                   <p className="text-[9px] font-bold uppercase tracking-widest text-green-200">Main Office</p>
-                  <p className="text-lg font-bold">(469) 264-9199</p>
+                  <p className="text-lg font-bold text-white">(214) 792-9658</p>
                 </div>
               </a>
             </div>
@@ -141,14 +141,14 @@ const Claims: React.FC = () => {
             <div className="p-8 bg-gray-50 rounded-3xl border border-gray-100 flex items-start space-x-4">
               <AlertTriangle className="w-6 h-6 text-amber-500 shrink-0 mt-1" />
               <div>
-                <h4 className="font-bold text-gray-900 text-sm">Emergency?</h4>
-                <p className="text-xs text-gray-500 font-light mt-1">If this is a life-threatening emergency, please dial 911 immediately.</p>
+                <h4 className="font-bold text-black text-sm">Emergency?</h4>
+                <p className="text-xs text-black/60 font-light mt-1">If this is a life-threatening emergency, please dial 911 immediately.</p>
               </div>
             </div>
           </div>
 
           <div className="lg:col-span-8 bg-white border border-gray-100 rounded-3xl lg:rounded-[3rem] p-8 md:p-12 lg:p-16 shadow-sm">
-            <h2 className="text-2xl md:text-3xl font-bold text-gray-900 serif mb-10 flex items-center">
+            <h2 className="text-2xl md:text-3xl font-bold text-black serif mb-10 flex items-center">
               <Info className="w-8 h-8 text-[#006838] mr-4" />
               Pro-Tips for Claims
             </h2>
@@ -156,36 +156,36 @@ const Claims: React.FC = () => {
               <div className="space-y-4">
                 <div className="flex items-center space-x-3">
                   <div className="w-2 h-2 bg-[#006838] rounded-full"></div>
-                  <h4 className="font-bold text-gray-900 text-sm">Document Everything</h4>
+                  <h4 className="font-bold text-black text-sm">Document Everything</h4>
                 </div>
-                <p className="text-xs text-gray-500 font-light leading-relaxed pl-5">
+                <p className="text-xs text-black/60 font-light leading-relaxed pl-5">
                   Take clear photos of all damage and obtain copies of police reports immediately.
                 </p>
               </div>
               <div className="space-y-4">
                 <div className="flex items-center space-x-3">
                   <div className="w-2 h-2 bg-[#006838] rounded-full"></div>
-                  <h4 className="font-bold text-gray-900 text-sm">Act Promptly</h4>
+                  <h4 className="font-bold text-black text-sm">Act Promptly</h4>
                 </div>
-                <p className="text-xs text-gray-500 font-light leading-relaxed pl-5">
+                <p className="text-xs text-black/60 font-light leading-relaxed pl-5">
                   Texas policy requirements often necessitate immediate notification of a loss.
                 </p>
               </div>
               <div className="space-y-4">
                 <div className="flex items-center space-x-3">
                   <div className="w-2 h-2 bg-[#006838] rounded-full"></div>
-                  <h4 className="font-bold text-gray-900 text-sm">Keep Receipts</h4>
+                  <h4 className="font-bold text-black text-sm">Keep Receipts</h4>
                 </div>
-                <p className="text-xs text-gray-500 font-light leading-relaxed pl-5">
+                <p className="text-xs text-black/60 font-light leading-relaxed pl-5">
                   Save receipts for emergency repairs or temporary housing as a direct result of the loss.
                 </p>
               </div>
               <div className="space-y-4">
                 <div className="flex items-center space-x-3">
                   <div className="w-2 h-2 bg-[#006838] rounded-full"></div>
-                  <h4 className="font-bold text-gray-900 text-sm">Expert Guidance</h4>
+                  <h4 className="font-bold text-black text-sm">Expert Guidance</h4>
                 </div>
-                <p className="text-xs text-gray-500 font-light leading-relaxed pl-5">
+                <p className="text-xs text-black/60 font-light leading-relaxed pl-5">
                   Our DFW team is available to help interpret complex policy language during your claim.
                 </p>
               </div>

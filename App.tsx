@@ -15,7 +15,6 @@ import Travel from './pages/Travel.tsx';
 import PrivacyPolicy from './pages/PrivacyPolicy.tsx';
 import TermsOfService from './pages/TermsOfService.tsx';
 import About from './pages/About.tsx';
-import ChatBot from './components/ChatBot.tsx';
 
 const ScrollToTop: React.FC = () => {
   const { pathname } = useLocation();
@@ -51,7 +50,6 @@ const App: React.FC = () => {
           </Routes>
         </main>
         <Footer />
-        <ChatBot />
       </div>
     </HashRouter>
   );

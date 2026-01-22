@@ -7,19 +7,19 @@ const About: React.FC = () => {
       <div className="max-w-7xl mx-auto px-6">
         <header className="max-w-4xl mb-32 space-y-6">
           <p className="text-[#006838] font-bold uppercase tracking-[0.3em] text-[10px]">Serving Texas Since 2014</p>
-          <h1 className="text-5xl md:text-7xl font-bold text-gray-900 serif leading-[1.1]">Built on Trust, <br /><span className="text-gray-400 italic">Driven by Service.</span></h1>
-          <p className="text-xl text-gray-500 font-light leading-relaxed">
+          <h1 className="text-5xl md:text-7xl font-bold text-black serif leading-[1.1]">Built on Trust, <br /><span className="text-black/40 italic">Driven by Service.</span></h1>
+          <p className="text-xl text-black/70 font-light leading-relaxed">
             Entrust Insurance and Financial Services was founded with a simple mission: to provide Texas families and businesses with honest, reliable insurance guidance they can count on.
           </p>
         </header>
 
         <section className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-center mb-40">
           <div className="space-y-8">
-            <h2 className="text-4xl font-bold serif text-gray-900">Our Texas Story</h2>
-            <p className="text-lg text-gray-500 font-light leading-relaxed">
+            <h2 className="text-4xl font-bold serif text-black">Our Texas Story</h2>
+            <p className="text-lg text-black/70 font-light leading-relaxed">
               Over the years, we've grown from a small local agency to a trusted name in the Richardson-Dallas area, but our values have remained the same. We understand that Texas insurance can feel overwhelming—complicated jargon, unique weather-related options, and uncertainty about what you actually need.
             </p>
-            <p className="text-lg text-gray-500 font-light leading-relaxed">
+            <p className="text-lg text-black/70 font-light leading-relaxed">
               That's where we come in. Our team cuts through the complexity to deliver clear, straightforward advice that empowers you to make informed decisions for your family and your business.
             </p>
           </div>
@@ -33,7 +33,7 @@ const About: React.FC = () => {
         </section>
 
         <div className="text-center mb-20">
-          <h2 className="text-4xl font-bold serif text-gray-900 mb-4">Why Choose Entrust?</h2>
+          <h2 className="text-4xl font-bold serif text-black mb-4">Why Choose Entrust?</h2>
           <div className="w-20 h-1 bg-[#006838] mx-auto rounded-full"></div>
         </div>
 
@@ -60,9 +60,9 @@ const About: React.FC = () => {
           />
         </div>
 
-        <section className="bg-gray-900 rounded-[4rem] p-12 md:p-24 text-white text-center">
+        <section className="bg-black rounded-[4rem] p-12 md:p-24 text-white text-center">
           <div className="max-w-3xl mx-auto space-y-8">
-            <h2 className="text-4xl font-bold serif">Our Commitment</h2>
+            <h2 className="text-4xl font-bold serif text-white">Our Commitment</h2>
             <p className="text-green-100/60 text-lg font-light leading-relaxed">
               We're committed to being more than just your insurance provider—we're your lifelong partner in protection here in North Texas. From your first quote to filing a claim decades later, we'll be by your side.
             </p>
@@ -78,8 +78,8 @@ const FeatureCard = ({ icon, title, desc }: { icon: any, title: string, desc: st
     <div className="w-12 h-12 bg-white rounded-xl shadow-sm flex items-center justify-center text-[#006838] mb-6">
       {icon}
     </div>
-    <h3 className="text-xl font-bold text-gray-900 mb-4">{title}</h3>
-    <p className="text-gray-500 text-sm font-light leading-relaxed">{desc}</p>
+    <h3 className="text-xl font-bold text-black mb-4">{title}</h3>
+    <p className="text-black/60 text-sm font-light leading-relaxed">{desc}</p>
   </div>
 );
 

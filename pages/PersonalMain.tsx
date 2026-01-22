@@ -56,8 +56,8 @@ const PersonalMain: React.FC = () => {
              <ShieldCheck className="w-4 h-4" />
              <span>Personal Asset Protection</span>
            </div>
-          <h1 className="text-4xl md:text-6xl font-bold text-gray-900 serif leading-tight animate-reveal">Texas <br /><span className="text-gradient-green italic font-medium">Lifestyles Secured.</span></h1>
-          <p className="text-lg text-gray-500 font-light leading-relaxed animate-fade-in-up delay-100">
+          <h1 className="text-4xl md:text-6xl font-bold text-black serif leading-tight animate-reveal">Texas <br /><span className="text-gradient-green italic font-medium">Lifestyles Secured.</span></h1>
+          <p className="text-lg text-black/70 font-light leading-relaxed animate-fade-in-up delay-100">
             You've built a life of distinction. Our personal protection plans are designed to scale with your family’s success.
           </p>
         </header>
@@ -73,19 +73,19 @@ const PersonalMain: React.FC = () => {
               <div className="w-12 h-12 bg-white rounded-xl shadow-sm flex items-center justify-center text-green-700 mb-6 group-hover:bg-green-700 group-hover:text-white transition-all">
                 {cat.icon}
               </div>
-              <h3 className="text-xl font-bold text-gray-900 serif mb-3">{cat.title}</h3>
-              <p className="text-xs text-gray-500 font-light leading-relaxed mb-6 flex-grow">{cat.desc}</p>
+              <h3 className="text-xl font-bold text-black serif mb-3">{cat.title}</h3>
+              <p className="text-xs text-black/60 font-light leading-relaxed mb-6 flex-grow">{cat.desc}</p>
               
               <div className="pt-6 border-t border-gray-100 flex items-center justify-between mt-auto">
                 <span className="text-[9px] font-black uppercase tracking-widest text-green-700">{cat.detail}</span>
-                <ArrowRight className="w-3 h-3 text-gray-300 group-hover:text-green-700 group-hover:translate-x-1 transition-all" />
+                <ArrowRight className="w-3 h-3 text-black/20 group-hover:text-green-700 group-hover:translate-x-1 transition-all" />
               </div>
             </Link>
           ))}
         </div>
 
         {/* CTA Section */}
-        <section className="relative py-20 rounded-[3rem] overflow-hidden bg-gray-900 text-center">
+        <section className="relative py-20 rounded-[3rem] overflow-hidden bg-black text-center">
           <div className="relative z-10 max-w-2xl mx-auto px-6 space-y-6">
             <h2 className="text-3xl md:text-5xl font-bold text-white serif">Secure your legacy today.</h2>
             <p className="text-base text-white/60 font-light">

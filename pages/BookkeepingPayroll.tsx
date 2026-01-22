@@ -32,11 +32,11 @@ const BookkeepingPayroll: React.FC = () => {
             <Coins className="w-4 h-4" />
             <span>Fiscal Management</span>
           </div>
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-gray-900 serif leading-tight">
+          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-black serif leading-tight">
             Bookkeeping & <br />
             <span className="text-gradient-green italic font-medium">Payroll Precision.</span>
           </h1>
-          <p className="text-lg md:text-xl text-gray-500 font-light leading-relaxed max-w-2xl">
+          <p className="text-lg md:text-xl text-black/70 font-light leading-relaxed max-w-2xl">
             Empower your Texas business with professional financial management. We handle the numbers so you can focus on growth and strategy.
           </p>
         </header>
@@ -48,13 +48,13 @@ const BookkeepingPayroll: React.FC = () => {
               <div className="w-14 h-14 bg-white rounded-2xl shadow-sm flex items-center justify-center text-[#006838] mb-8 group-hover:bg-[#006838] group-hover:text-white transition-all">
                 {service.icon}
               </div>
-              <h3 className="text-3xl font-bold text-gray-900 serif mb-6">{service.title}</h3>
-              <p className="text-gray-500 font-light leading-relaxed mb-10 flex-grow">{service.desc}</p>
+              <h3 className="text-3xl font-bold text-black serif mb-6">{service.title}</h3>
+              <p className="text-black/60 font-light leading-relaxed mb-10 flex-grow">{service.desc}</p>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {service.points.map((point, i) => (
                   <div key={i} className="flex items-center space-x-3">
                     <CheckCircle className="w-4 h-4 text-green-600" />
-                    <span className="text-[11px] font-bold uppercase tracking-widest text-gray-400">{point}</span>
+                    <span className="text-[11px] font-bold uppercase tracking-widest text-black/40">{point}</span>
                   </div>
                 ))}
               </div>
@@ -63,7 +63,7 @@ const BookkeepingPayroll: React.FC = () => {
         </div>
 
         {/* Process Section */}
-        <section className="mb-32 bg-gray-900 rounded-[4rem] p-12 md:p-24 text-white overflow-hidden relative">
+        <section className="mb-32 bg-black rounded-[4rem] p-12 md:p-24 text-white overflow-hidden relative">
           <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-green-500/10 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/2"></div>
           
           <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
@@ -96,22 +96,22 @@ const BookkeepingPayroll: React.FC = () => {
             <div className="w-12 h-12 bg-green-50 rounded-full flex items-center justify-center text-[#006838] mx-auto">
               <ShieldCheck className="w-6 h-6" />
             </div>
-            <h4 className="text-lg font-bold text-gray-900 serif">Tax Ready</h4>
-            <p className="text-xs text-gray-400 font-light leading-relaxed px-4">Our bookkeeping is built to integrate perfectly with our Tax Services, making year-end seamless.</p>
+            <h4 className="text-lg font-bold text-black serif">Tax Ready</h4>
+            <p className="text-xs text-black/40 font-light leading-relaxed px-4">Our bookkeeping is built to integrate perfectly with our Tax Services, making year-end seamless.</p>
           </div>
           <div className="text-center space-y-4">
             <div className="w-12 h-12 bg-green-50 rounded-full flex items-center justify-center text-[#006838] mx-auto">
               <PieChart className="w-6 h-6" />
             </div>
-            <h4 className="text-lg font-bold text-gray-900 serif">Insight Driven</h4>
-            <p className="text-xs text-gray-400 font-light leading-relaxed px-4">Gain a clear view of your cash flow and profitability with our custom monthly reports.</p>
+            <h4 className="text-lg font-bold text-black serif">Insight Driven</h4>
+            <p className="text-xs text-black/40 font-light leading-relaxed px-4">Gain a clear view of your cash flow and profitability with our custom monthly reports.</p>
           </div>
           <div className="text-center space-y-4">
             <div className="w-12 h-12 bg-green-50 rounded-full flex items-center justify-center text-[#006838] mx-auto">
               <Landmark className="w-6 h-6" />
             </div>
-            <h4 className="text-lg font-bold text-gray-900 serif">Full Compliance</h4>
-            <p className="text-xs text-gray-400 font-light leading-relaxed px-4">We stay updated on all Texas and Federal payroll regulations so you stay fully compliant.</p>
+            <h4 className="text-lg font-bold text-black serif">Full Compliance</h4>
+            <p className="text-xs text-black/40 font-light leading-relaxed px-4">We stay updated on all Texas and Federal payroll regulations so you stay fully compliant.</p>
           </div>
         </div>
       </div>

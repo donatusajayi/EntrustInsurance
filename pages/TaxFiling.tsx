@@ -32,11 +32,11 @@ const TaxServices: React.FC = () => {
             <Calculator className="w-4 h-4" />
             <span>Fiduciary Standards</span>
           </div>
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-gray-900 serif leading-tight">
+          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-black serif leading-tight">
             Strategic <br />
             <span className="text-gradient-blue italic font-medium">Tax Services.</span>
           </h1>
-          <p className="text-lg md:text-xl text-gray-500 font-light leading-relaxed max-w-2xl">
+          <p className="text-lg md:text-xl text-black/70 font-light leading-relaxed max-w-2xl">
             Beyond insurance, we provide the fiscal clarity needed to navigate the complexities of tax season. Precision services for modern Texas lifestyles and growing enterprises.
           </p>
         </header>
@@ -48,13 +48,13 @@ const TaxServices: React.FC = () => {
               <div className="w-14 h-14 bg-white rounded-2xl shadow-sm flex items-center justify-center text-blue-700 mb-8 group-hover:bg-blue-700 group-hover:text-white transition-all">
                 {service.icon}
               </div>
-              <h3 className="text-3xl font-bold text-gray-900 serif mb-6">{service.title}</h3>
-              <p className="text-gray-500 font-light leading-relaxed mb-10 flex-grow">{service.desc}</p>
+              <h3 className="text-3xl font-bold text-black serif mb-6">{service.title}</h3>
+              <p className="text-black/60 font-light leading-relaxed mb-10 flex-grow">{service.desc}</p>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {service.points.map((point, i) => (
                   <div key={i} className="flex items-center space-x-3">
                     <CheckCircle className="w-4 h-4 text-green-600" />
-                    <span className="text-[11px] font-bold uppercase tracking-widest text-gray-400">{point}</span>
+                    <span className="text-[11px] font-bold uppercase tracking-widest text-black/40">{point}</span>
                   </div>
                 ))}
               </div>
@@ -63,7 +63,7 @@ const TaxServices: React.FC = () => {
         </div>
 
         {/* Process Section */}
-        <section className="mb-32 bg-gray-900 rounded-[4rem] p-12 md:p-24 text-white overflow-hidden relative">
+        <section className="mb-32 bg-black rounded-[4rem] p-12 md:p-24 text-white overflow-hidden relative">
           <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-blue-500/10 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/2"></div>
           
           <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
@@ -96,22 +96,22 @@ const TaxServices: React.FC = () => {
             <div className="w-12 h-12 bg-blue-50 rounded-full flex items-center justify-center text-blue-700 mx-auto">
               <ShieldCheck className="w-6 h-6" />
             </div>
-            <h4 className="text-lg font-bold text-gray-900 serif">Audit Ready</h4>
-            <p className="text-xs text-gray-400 font-light leading-relaxed px-4">Our documentation standards are built to withstand federal and state level scrutiny.</p>
+            <h4 className="text-lg font-bold text-black serif">Audit Ready</h4>
+            <p className="text-xs text-black/40 font-light leading-relaxed px-4">Our documentation standards are built to withstand federal and state level scrutiny.</p>
           </div>
           <div className="text-center space-y-4">
             <div className="w-12 h-12 bg-blue-50 rounded-full flex items-center justify-center text-blue-700 mx-auto">
               <UserCheck className="w-6 h-6" />
             </div>
-            <h4 className="text-lg font-bold text-gray-900 serif">Expert Review</h4>
-            <p className="text-xs text-gray-400 font-light leading-relaxed px-4">Every return is reviewed by a senior tax advisor to ensure no opportunity is missed.</p>
+            <h4 className="text-lg font-bold text-black serif">Expert Review</h4>
+            <p className="text-xs text-black/40 font-light leading-relaxed px-4">Every return is reviewed by a senior tax advisor to ensure no opportunity is missed.</p>
           </div>
           <div className="text-center space-y-4">
             <div className="w-12 h-12 bg-blue-50 rounded-full flex items-center justify-center text-blue-700 mx-auto">
               <PieChart className="w-6 h-6" />
             </div>
-            <h4 className="text-lg font-bold text-gray-900 serif">Tax Efficient</h4>
-            <p className="text-xs text-gray-400 font-light leading-relaxed px-4">We structure your finances to minimize future liability through legal tax-advantaged strategies.</p>
+            <h4 className="text-lg font-bold text-black serif">Tax Efficient</h4>
+            <p className="text-xs text-black/40 font-light leading-relaxed px-4">We structure your finances to minimize future liability through legal tax-advantaged strategies.</p>
           </div>
         </div>
       </div>

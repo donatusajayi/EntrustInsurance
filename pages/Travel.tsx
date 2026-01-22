@@ -32,11 +32,11 @@ const Travel: React.FC = () => {
             <Plane className="w-4 h-4" />
             <span>Entrust Travel Concierge</span>
           </div>
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-gray-900 serif leading-tight">
+          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-black serif leading-tight">
             Journeys Designed <br />
             <span className="text-gradient-blue italic font-medium">Without Limits.</span>
           </h1>
-          <p className="text-lg md:text-xl text-gray-500 font-light leading-relaxed max-w-2xl">
+          <p className="text-lg md:text-xl text-black/70 font-light leading-relaxed max-w-2xl">
             Entrust extends its commitment to protection into the world of travel. We don't just book trips; we architect seamless global experiences.
           </p>
         </header>
@@ -48,7 +48,7 @@ const Travel: React.FC = () => {
             alt="Seamless Travel" 
             className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-gray-900/60 via-transparent to-transparent"></div>
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
           <div className="absolute bottom-12 left-12 text-white max-w-lg">
             <h3 className="text-3xl font-bold serif mb-2">Elevated Exploration.</h3>
             <p className="text-sm font-light text-white/80">From DFW to any destination on the globe, we handle the complexity while you enjoy the journey.</p>
@@ -62,13 +62,13 @@ const Travel: React.FC = () => {
               <div className="w-14 h-14 bg-white rounded-2xl shadow-sm flex items-center justify-center text-indigo-700 mb-8 group-hover:bg-indigo-700 group-hover:text-white transition-all">
                 {service.icon}
               </div>
-              <h3 className="text-3xl font-bold text-gray-900 serif mb-6">{service.title}</h3>
-              <p className="text-gray-500 font-light leading-relaxed mb-10">{service.desc}</p>
+              <h3 className="text-3xl font-bold text-black serif mb-6">{service.title}</h3>
+              <p className="text-black/60 font-light leading-relaxed mb-10">{service.desc}</p>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-auto">
                 {service.features.map((feature, i) => (
                   <div key={i} className="flex items-center space-x-3">
                     <div className="w-1.5 h-1.5 bg-indigo-500 rounded-full"></div>
-                    <span className="text-[10px] font-bold uppercase tracking-widest text-gray-400">{feature}</span>
+                    <span className="text-[10px] font-bold uppercase tracking-widest text-black/40">{feature}</span>
                   </div>
                 ))}
               </div>
@@ -77,7 +77,7 @@ const Travel: React.FC = () => {
         </div>
 
         {/* Value Propositions */}
-        <section className="py-24 bg-gray-900 rounded-[4rem] px-12 md:px-24 text-white relative overflow-hidden mb-32">
+        <section className="py-24 bg-black rounded-[4rem] px-12 md:px-24 text-white relative overflow-hidden mb-32">
            <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-indigo-500/10 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/2"></div>
            <div className="relative z-10 grid grid-cols-1 md:grid-cols-3 gap-16">
               {benefits.map((benefit, i) => (
@@ -94,9 +94,9 @@ const Travel: React.FC = () => {
 
         {/* Final CTA */}
         <div className="text-center max-w-2xl mx-auto space-y-8">
-           <Camera className="w-12 h-12 text-gray-200 mx-auto" />
-           <h2 className="text-4xl font-bold text-gray-900 serif">Your Next Chapter Awaits.</h2>
-           <p className="text-gray-500 font-light leading-relaxed">
+           <Camera className="w-12 h-12 text-black/10 mx-auto" />
+           <h2 className="text-4xl font-bold text-black serif">Your Next Chapter Awaits.</h2>
+           <p className="text-black/70 font-light leading-relaxed">
              Whether planning a corporate retreat or a family milestone, our travel advisors are ready to translate your vision into a reality.
            </p>
            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -106,7 +106,7 @@ const Travel: React.FC = () => {
             >
               Consult with an Advisor
             </Link>
-            <Link to="/personal/umbrella" className="px-10 py-5 border border-gray-100 text-gray-500 rounded-2xl font-bold uppercase tracking-widest text-[11px] hover:bg-gray-50 transition-all">
+            <Link to="/personal/umbrella" className="px-10 py-5 border border-gray-100 text-black/60 rounded-2xl font-bold uppercase tracking-widest text-[11px] hover:bg-gray-50 transition-all">
               Travel Insurance
             </Link>
            </div>

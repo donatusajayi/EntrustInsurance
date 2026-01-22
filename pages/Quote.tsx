@@ -29,11 +29,11 @@ const Quote: React.FC = () => {
             <ShieldCheck className="w-4 h-4" />
             <span>Secure Digital Portal</span>
           </div>
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 serif animate-reveal">
+          <h1 className="text-4xl md:text-5xl font-bold text-black serif animate-reveal">
             Texas Coverage <br />
             <span className="text-gradient-blue italic font-medium">Comparison Engine.</span>
           </h1>
-          <p className="text-gray-500 font-light max-w-xl animate-fade-in-up delay-100">
+          <p className="text-black/70 font-light max-w-xl animate-fade-in-up delay-100">
             Compare rates from 15+ top-rated Texas carriers instantly. Your information is encrypted and sent directly to our licensed advisory team.
           </p>
         </header>
@@ -43,7 +43,7 @@ const Quote: React.FC = () => {
           <div className="bg-gray-50 border-b border-gray-100 px-8 py-4 flex items-center justify-between">
             <div className="flex items-center space-x-2">
               <Lock className="w-3.5 h-3.5 text-green-600" />
-              <span className="text-[10px] font-bold uppercase tracking-widest text-gray-400">256-bit SSL Secure Connection</span>
+              <span className="text-[10px] font-bold uppercase tracking-widest text-black/40">256-bit SSL Secure Connection</span>
             </div>
             <div className="hidden sm:flex items-center space-x-4 opacity-40">
               <span className="w-2 h-2 bg-gray-300 rounded-full"></span>
@@ -55,7 +55,7 @@ const Quote: React.FC = () => {
           {loading && (
             <div className="absolute inset-0 z-10 flex flex-col items-center justify-center bg-white min-h-[600px]">
               <RefreshCw className="w-10 h-10 text-blue-600 animate-spin mb-4" />
-              <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-400">Loading Texas Rating Engine...</p>
+              <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-black/40">Loading Texas Rating Engine...</p>
             </div>
           )}
 
@@ -71,7 +71,7 @@ const Quote: React.FC = () => {
           />
         </div>
 
-        <div className="mt-12 flex flex-col md:flex-row items-center justify-center space-y-4 md:space-y-0 md:space-x-12 text-[10px] font-bold uppercase tracking-widest text-gray-400 opacity-60">
+        <div className="mt-12 flex flex-col md:flex-row items-center justify-center space-y-4 md:space-y-0 md:space-x-12 text-[10px] font-bold uppercase tracking-widest text-black/40">
           <div className="flex items-center space-x-2">
             <ShieldCheck className="w-4 h-4" />
             <span>Licensed Agency #64437</span>

@@ -23,7 +23,7 @@ CRITICAL RULES:
 4. CONCLUDING CONVERSATIONS: End with a polite closing if the user is satisfied. Do NOT ask follow-up questions if the conversation is clearly finished.
 
 Contact Details (Only use when handoff is necessary):
-- Phone: (469) 264-9199
+- Phone: (214) 792-9658
 - Email: info@entrustfin.com
 - Address: 1651 N Collins Blvd Ste 122, Richardson, TX 75080.
 
@@ -41,7 +41,7 @@ const FormattedText: React.FC<{ text: string }> = ({ text }) => {
     <div className="whitespace-pre-wrap leading-relaxed">
       {parts.map((part, i) => {
         if (part.startsWith('**') && part.endsWith('**')) {
-          return <strong key={i} className="font-bold text-gray-900">{part.slice(2, -2)}</strong>;
+          return <strong key={i} className="font-bold text-black">{part.slice(2, -2)}</strong>;
         }
         return part;
       })}
@@ -59,13 +59,13 @@ const ContactCard: React.FC = () => (
     </div>
     
     <div className="space-y-3">
-      <a href="tel:4692649199" className="flex items-center space-x-3 group">
+      <a href="tel:2147929658" className="flex items-center space-x-3 group">
         <div className="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center group-hover:bg-white/30 transition-all">
           <Phone className="w-3.5 h-3.5" />
         </div>
         <div className="flex flex-col">
           <span className="text-[9px] uppercase tracking-tighter opacity-60">Call Directly</span>
-          <span className="text-sm font-bold">(469) 264-9199</span>
+          <span className="text-sm font-bold">(214) 792-9658</span>
         </div>
       </a>
 
@@ -159,7 +159,7 @@ const ChatBot: React.FC = () => {
       await new Promise(resolve => setTimeout(resolve, 1000 + Math.random() * 500));
     }
     
-    const mentionsContactDetails = /469-264-9199|info@entrustfin\.com|1651 N Collins/i.test(fullText);
+    const mentionsContactDetails = /214-792-9658|info@entrustfin\.com|1651 N Collins/i.test(fullText);
 
     for (let i = 0; i < chunks.length; i++) {
       setIsTyping(true);
@@ -220,7 +220,7 @@ const ChatBot: React.FC = () => {
 
       await deliverResponseWithCadence(response.text || "I'm having trouble connecting. Please try again.", true);
     } catch (error) {
-      setMessages(prev => [...prev, { role: 'model', text: "I'm offline right now. Please try calling us at (469) 264-9199." }]);
+      setMessages(prev => [...prev, { role: 'model', text: "I'm offline right now. Please try calling us at (214) 792-9658." }]);
       setIsTyping(false);
     }
   };
@@ -239,7 +239,7 @@ const ChatBot: React.FC = () => {
            <div className="relative bg-white p-5 rounded-[2rem] shadow-[0_20px_40px_-12px_rgba(0,0,0,0.15)] border border-blue-50">
               <button 
                 onClick={(e) => { e.stopPropagation(); setShowInvite(false); }}
-                className="absolute top-3 right-3 p-1 hover:bg-gray-100 rounded-full transition-colors text-gray-300 hover:text-gray-500"
+                className="absolute top-3 right-3 p-1 hover:bg-gray-100 rounded-full transition-colors text-black/20 hover:text-black/40"
               >
                 <X className="w-3 h-3" />
               </button>
@@ -250,7 +250,7 @@ const ChatBot: React.FC = () => {
                 <div className="flex items-center space-x-2 text-blue-700 font-bold uppercase tracking-widest text-[9px]">
                   <Sparkles className="w-3 h-3" />
                 </div>
-                <p className="text-sm font-bold text-gray-900 leading-tight group-hover:text-blue-700 transition-colors serif italic">
+                <p className="text-sm font-bold text-black leading-tight group-hover:text-blue-700 transition-colors serif italic">
                   "Hello! Need help with insurance, tax services, or payroll?"
                 </p>
                 <div className="flex items-center text-[10px] font-bold text-blue-600">
@@ -281,16 +281,16 @@ const ChatBot: React.FC = () => {
                 <ShieldCheck className="w-6 h-6" />
               </div>
               <div>
-                <h3 className="font-bold text-sm serif text-gray-900 leading-none">Entrust Concierge</h3>
+                <h3 className="font-bold text-sm serif text-black leading-none">Entrust Concierge</h3>
                 <div className="flex items-center mt-1">
                   <span className="w-1.5 h-1.5 bg-green-500 rounded-full mr-2 animate-pulse"></span>
-                  <span className="text-[10px] font-bold uppercase tracking-widest text-gray-400">Services Advisor</span>
+                  <span className="text-[10px] font-bold uppercase tracking-widest text-black/40">Services Advisor</span>
                 </div>
               </div>
             </div>
             <div className="flex items-center space-x-1">
-              <button onClick={() => { setMessages([]); localStorage.removeItem(STORAGE_KEY); }} className="p-2 hover:bg-gray-100 rounded-full transition-colors text-gray-400 hover:text-red-500"><Trash2 className="w-4 h-4" /></button>
-              <button onClick={() => setIsOpen(false)} className="p-2 hover:bg-gray-100 rounded-full transition-colors text-gray-400"><X className="w-5 h-5" /></button>
+              <button onClick={() => { setMessages([]); localStorage.removeItem(STORAGE_KEY); }} className="p-2 hover:bg-gray-100 rounded-full transition-colors text-black/40 hover:text-red-500"><Trash2 className="w-4 h-4" /></button>
+              <button onClick={() => setIsOpen(false)} className="p-2 hover:bg-gray-100 rounded-full transition-colors text-black/40"><X className="w-5 h-5" /></button>
             </div>
           </div>
 
@@ -298,12 +298,12 @@ const ChatBot: React.FC = () => {
             {messages.length === 0 && (
               <div className="text-center space-y-8 py-8">
                 <div className="space-y-3">
-                  <h4 className="text-2xl font-bold serif text-gray-900 leading-tight">Elite Protection & Concierge.</h4>
-                  <p className="text-sm text-gray-500 font-light max-w-[280px] mx-auto">I'm here to help with your insurance, tax services, or payroll management.</p>
+                  <h4 className="text-2xl font-bold serif text-black leading-tight">Elite Protection & Concierge.</h4>
+                  <p className="text-sm text-black/60 font-light max-w-[280px] mx-auto">I'm here to help with your insurance, tax services, or payroll management.</p>
                 </div>
                 <div className="grid grid-cols-1 gap-3 px-4">
                   {quickActions.map((action) => (
-                    <button key={action.label} onClick={() => handleSend(action.label)} className={`p-4 border rounded-2xl text-[11px] font-bold uppercase tracking-widest transition-all flex items-center justify-center space-x-3 shadow-sm ${action.primary ? 'bg-blue-700 border-blue-700 text-white hover:bg-blue-800' : 'bg-white border-gray-100 text-gray-600 hover:border-blue-700 hover:text-blue-700'}`}>
+                    <button key={action.label} onClick={() => handleSend(action.label)} className={`p-4 border rounded-2xl text-[11px] font-bold uppercase tracking-widest transition-all flex items-center justify-center space-x-3 shadow-sm ${action.primary ? 'bg-blue-700 border-blue-700 text-white hover:bg-blue-800' : 'bg-white border-gray-100 text-black/70 hover:border-blue-700 hover:text-blue-700'}`}>
                       {action.icon}<span>{action.label}</span>
                     </button>
                   ))}
@@ -314,11 +314,11 @@ const ChatBot: React.FC = () => {
             {messages.map((m, i) => (
               <div key={i} className={`flex ${m.role === 'user' ? 'justify-end' : 'justify-start'} animate-fade-in-up`}>
                 <div className={`flex items-start space-x-3 max-w-[88%] ${m.role === 'user' ? 'flex-row-reverse space-x-reverse' : ''}`}>
-                  <div className={`w-8 h-8 rounded-xl flex items-center justify-center shrink-0 mt-1 shadow-sm ${m.role === 'user' ? 'bg-gray-900 text-white' : 'bg-blue-50 text-blue-700 border border-blue-100'}`}>
+                  <div className={`w-8 h-8 rounded-xl flex items-center justify-center shrink-0 mt-1 shadow-sm ${m.role === 'user' ? 'bg-black text-white' : 'bg-blue-50 text-blue-700 border border-blue-100'}`}>
                     {m.role === 'user' ? <User className="w-4 h-4" /> : <ShieldCheck className="w-4 h-4" />}
                   </div>
                   <div className="flex flex-col">
-                    <div className={`p-4 rounded-2xl text-[13px] shadow-sm ${m.role === 'user' ? 'bg-gray-900 text-white rounded-tr-none' : 'bg-white text-gray-700 border border-gray-100 rounded-tl-none font-light leading-relaxed'}`}>
+                    <div className={`p-4 rounded-2xl text-[13px] shadow-sm ${m.role === 'user' ? 'bg-black text-white rounded-tr-none' : 'bg-white text-black border border-gray-100 rounded-tl-none font-light leading-relaxed'}`}>
                       <FormattedText text={m.text} />
                     </div>
                     {m.showContactCard && <ContactCard />}
@@ -333,7 +333,7 @@ const ChatBot: React.FC = () => {
                     <div className="w-1.5 h-1.5 bg-blue-400 rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></div>
                     <div className="w-1.5 h-1.5 bg-blue-400 rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></div>
                  </div>
-                 <span className="text-[10px] text-gray-400 font-bold uppercase tracking-widest italic">Concierge is responding...</span>
+                 <span className="text-[10px] text-black/40 font-bold uppercase tracking-widest italic">Concierge is responding...</span>
               </div>
             )}
           </div>
@@ -345,7 +345,7 @@ const ChatBot: React.FC = () => {
                 onChange={(e) => setInput(e.target.value)}
                 onFocus={resetInactivityTimer}
                 placeholder="Message concierge..."
-                className="w-full pl-6 pr-14 py-4 bg-slate-50 rounded-2xl outline-none focus:bg-white focus:ring-4 focus:ring-blue-50 transition-all border border-transparent focus:border-blue-100 text-sm font-light"
+                className="w-full pl-6 pr-14 py-4 bg-slate-50 rounded-2xl outline-none focus:bg-white focus:ring-4 focus:ring-blue-50 transition-all border border-transparent focus:border-blue-100 text-sm font-light text-black"
               />
               <button type="submit" className="absolute right-2 top-2 w-10 h-10 bg-blue-700 text-white rounded-xl flex items-center justify-center hover:bg-blue-800 transition-all active:scale-90 shadow-lg shadow-blue-100" disabled={!input.trim()}>
                 <Send className="w-4 h-4" />

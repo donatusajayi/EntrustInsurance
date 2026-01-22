@@ -27,14 +27,14 @@ const CommercialMain: React.FC = () => {
     <div className="pt-32 pb-24 animate-fade-in-up">
       <div className="max-w-7xl mx-auto px-6">
         <header className="max-w-4xl mb-16 md:mb-24 space-y-6">
-          <h1 className="text-4xl md:text-5_xl lg:text-7xl font-bold text-gray-900 serif leading-[1.1]">Securing the <br /><span className="text-blue-700 italic">Texas Economy.</span></h1>
-          <p className="text-lg md:text-xl text-gray-500 font-light leading-relaxed">
+          <h1 className="text-4xl md:text-5_xl lg:text-7xl font-bold text-black serif leading-[1.1]">Securing the <br /><span className="text-blue-700 italic">Texas Economy.</span></h1>
+          <p className="text-lg md:text-xl text-black/70 font-light leading-relaxed">
             You've built your business in one of the most dynamic economies in the world. At Entrust Insurance, we provide comprehensive commercial solutions that safeguard your operations across DFW.
           </p>
         </header>
 
         <section className="mb-16 md:mb-32">
-          <p className="text-center text-[10px] font-bold uppercase tracking-[0.3em] text-gray-400 mb-8 md:mb-10">Industries We Serve Across Texas</p>
+          <p className="text-center text-[10px] font-bold uppercase tracking-[0.3em] text-black/40 mb-8 md:mb-10">Industries We Serve Across Texas</p>
           <div className="flex flex-wrap justify-center gap-2 md:gap-4">
             {industries.map(i => (
               <span key={i} className="px-4 md:px-6 py-2 md:py-3 bg-blue-50/50 rounded-full text-[10px] md:text-xs font-bold text-blue-800 border border-blue-100 whitespace-nowrap">{i}</span>
@@ -48,8 +48,8 @@ const CommercialMain: React.FC = () => {
               <div className="w-10 h-10 bg-blue-50 rounded-xl flex items-center justify-center text-blue-700 mb-6 group-hover:bg-blue-700 group-hover:text-white transition-all">
                 {cat.icon}
               </div>
-              <h3 className="text-lg font-bold text-gray-900 mb-2">{cat.title}</h3>
-              <p className="text-xs text-gray-500 font-light leading-relaxed flex-grow">{cat.desc}</p>
+              <h3 className="text-lg font-bold text-black mb-2">{cat.title}</h3>
+              <p className="text-xs text-black/60 font-light leading-relaxed flex-grow">{cat.desc}</p>
             </div>
           ))}
         </div>
@@ -57,8 +57,8 @@ const CommercialMain: React.FC = () => {
         {/* Simplified CTA Section */}
         <section className="py-16 md:py-24 text-center bg-blue-50 rounded-[3rem] border border-blue-100">
           <div className="max-w-3_xl mx-auto px-6 space-y-8">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 serif">Secure your DFW business future.</h2>
-            <p className="text-gray-500 font-light text-base md:text-lg">
+            <h2 className="text-3xl md:text-4xl font-bold text-black serif">Secure your DFW business future.</h2>
+            <p className="text-black/70 font-light text-base md:text-lg">
               Tailored commercial strategies for Texas enterprises. Our independent advisors find the coverage that fits your specific regional industry risks.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
@@ -69,7 +69,7 @@ const CommercialMain: React.FC = () => {
                 Get a Quote
               </Link>
               <a 
-                href="tel:4692649199" 
+                href="tel:2147929658" 
                 className="w-full sm:w-auto flex items-center justify-center space-x-2 border border-blue-200 bg-white text-blue-800 px-10 py-5 rounded-2_xl font-bold uppercase tracking-widest text-[11px] hover:bg-blue-50 transition-all"
               >
                 <Phone className="w-4 h-4" />

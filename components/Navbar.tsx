@@ -9,6 +9,8 @@ const Navbar: React.FC = () => {
   const location = useLocation();
   const navRef = useRef<HTMLDivElement>(null);
 
+  const APPOINTMENT_URL = "https://entrustinsappt.as.me/schedule/f73c4756";
+
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener('scroll', handleScroll);
@@ -53,6 +55,11 @@ const Navbar: React.FC = () => {
     { to: '/commercial', label: 'All Commercial' },
   ];
 
+  const financialLinks = [
+    { to: '/tax-services', label: 'Tax Services' },
+    { to: '/bookkeeping-payroll', label: 'Bookkeeping & Payroll' },
+  ];
+
   return (
     <nav 
       ref={navRef} 
@@ -61,20 +68,20 @@ const Navbar: React.FC = () => {
       }`}
     >
       <div className="max-w-[1440px] mx-auto px-6 md:px-10 flex justify-between items-center">
-        <Link to="/" onClick={handleLinkClick} className="flex items-center space-x-4 group origin-left">
+        <Link to="/" onClick={handleLinkClick} className="flex items-center space-x-4 md:space-x-5 group origin-left shrink-0">
           <div className="relative">
              <img 
               src="https://i.ibb.co/nNtJYCXL/Entrust-Logo-removebg-preview.png" 
               alt="Entrust Logo" 
-              className="h-10 md:h-12 lg:h-14 w-auto object-contain transition-transform group-hover:scale-110 duration-500"
+              className="h-12 md:h-18 lg:h-24 w-auto object-contain transition-transform group-hover:scale-110 duration-500"
             />
           </div>
           <div className="flex flex-col">
-            <span className="text-lg md:text-xl font-bold text-gray-900 serif leading-none tracking-tight">
+            <span className="text-xl md:text-2xl lg:text-3xl font-bold text-black serif leading-none tracking-tight">
               Entrust
             </span>
-            <span className="text-[9px] font-bold text-gray-400 uppercase tracking-[0.2em] mt-0.5">
-              Insurance
+            <span className="text-[8px] md:text-[10px] lg:text-[11px] font-bold text-black uppercase tracking-[0.15em] mt-1 leading-tight max-w-[140px] md:max-w-none">
+              Insurance and <br className="md:hidden" /> Financial Services
             </span>
           </div>
         </Link>
@@ -103,9 +110,28 @@ const Navbar: React.FC = () => {
             brandColor="blue"
           />
 
+          <Dropdown 
+            label="Financial Services" 
+            links={financialLinks} 
+            active={location.pathname === '/tax-services' || location.pathname === '/bookkeeping-payroll'}
+            isOpen={activeDropdown === 'financial'}
+            onToggle={() => setActiveDropdown(activeDropdown === 'financial' ? null : 'financial')}
+            onLinkClick={handleLinkClick}
+            brandColor="green"
+          />
+
           <NavLink to="/claims" label="Claims" active={location.pathname === '/claims'} onClick={handleLinkClick} />
-          <NavLink to="/tax-services" label="Tax Services" active={location.pathname === '/tax-services'} onClick={handleLinkClick} />
-          <NavLink to="/bookkeeping-payroll" label="Bookkeeping & Payroll" active={location.pathname === '/bookkeeping-payroll'} onClick={handleLinkClick} />
+          
+          <a 
+            href={APPOINTMENT_URL} 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            className="relative py-2 text-[11px] font-bold uppercase tracking-widest transition-all group text-black hover:text-black/70"
+          >
+            Appointment
+            <span className="absolute bottom-0 left-0 w-full h-[2px] bg-blue-600 transition-transform duration-300 origin-right scale-x-0 group-hover:scale-x-100 group-hover:origin-left"></span>
+          </a>
+
           <NavLink to="/contact" label="Contact" active={location.pathname === '/contact'} onClick={handleLinkClick} />
 
           <div className="h-6 w-[1px] bg-gray-200 mx-2"></div>
@@ -122,7 +148,7 @@ const Navbar: React.FC = () => {
 
         {/* Mobile Toggle */}
         <button 
-          className="xl:hidden text-gray-900 p-2 hover:bg-gray-100 rounded-full transition-colors" 
+          className="xl:hidden text-black p-2 hover:bg-gray-100 rounded-full transition-colors" 
           onClick={() => setIsOpen(!isOpen)}
         >
           {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -130,15 +156,25 @@ const Navbar: React.FC = () => {
       </div>
 
       {/* Mobile Menu */}
-      <div className={`xl:hidden fixed inset-0 top-[72px] bg-white transition-all duration-500 transform ${isOpen ? 'translate-x-0 opacity-100' : 'translate-x-full opacity-0'} overflow-y-auto z-[90]`}>
+      <div className={`xl:hidden fixed inset-0 top-[88px] bg-white transition-all duration-500 transform ${isOpen ? 'translate-x-0 opacity-100' : 'translate-x-full opacity-0'} overflow-y-auto z-[90]`}>
         <div className="p-8 space-y-8 pb-32">
-          <Link to="/" onClick={handleLinkClick} className="block text-3xl font-bold text-gray-900 serif">Home</Link>
+          <Link to="/" onClick={handleLinkClick} className="block text-3xl font-bold text-black serif">Home</Link>
           <MobileSection title="Personal" links={personalLinks} brandColor="green" onSelect={handleLinkClick} />
           <MobileSection title="Commercial" links={commercialLinks} brandColor="blue" onSelect={handleLinkClick} />
-          <Link to="/claims" onClick={handleLinkClick} className="block text-3xl font-bold text-gray-900 serif">Claims</Link>
-          <Link to="/tax-services" onClick={handleLinkClick} className="block text-3xl font-bold text-gray-900 serif">Tax Services</Link>
-          <Link to="/bookkeeping-payroll" onClick={handleLinkClick} className="block text-3xl font-bold text-gray-900 serif">Bookkeeping & Payroll</Link>
-          <Link to="/contact" onClick={handleLinkClick} className="block text-3xl font-bold text-gray-900 serif">Contact</Link>
+          <MobileSection title="Financial Services" links={financialLinks} brandColor="green" onSelect={handleLinkClick} />
+          <Link to="/claims" onClick={handleLinkClick} className="block text-3xl font-bold text-black serif">Claims</Link>
+          
+          <a 
+            href={APPOINTMENT_URL} 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            className="block text-3xl font-bold text-black serif"
+            onClick={handleLinkClick}
+          >
+            Appointment
+          </a>
+
+          <Link to="/contact" onClick={handleLinkClick} className="block text-3xl font-bold text-black serif">Contact</Link>
           <Link 
             to="/quote" 
             onClick={handleLinkClick}
@@ -157,7 +193,7 @@ const NavLink = ({ to, label, active, onClick }: any) => (
     to={to} 
     onClick={onClick}
     className={`relative py-2 text-[11px] font-bold uppercase tracking-widest transition-all group ${
-      active ? 'text-gray-900' : 'text-gray-500 hover:text-gray-900'
+      active ? 'text-black' : 'text-black hover:text-black/70'
     }`}
   >
     {label}
@@ -170,7 +206,7 @@ const Dropdown = ({ label, links, active, isOpen, onToggle, onLinkClick, brandCo
     <button 
       onClick={onToggle}
       className={`flex items-center space-x-1.5 text-[11px] font-bold uppercase tracking-widest transition-colors ${
-        active ? 'text-gray-900' : 'text-gray-500 hover:text-gray-900'
+        active ? 'text-black' : 'text-black hover:text-black/70'
       }`}
     >
       <span>{label}</span>
@@ -183,7 +219,7 @@ const Dropdown = ({ label, links, active, isOpen, onToggle, onLinkClick, brandCo
             key={link.to} 
             to={link.to} 
             onClick={onLinkClick}
-            className={`px-5 py-3.5 rounded-2xl text-[10px] font-bold uppercase tracking-widest text-gray-500 transition-all hover:translate-x-1 ${
+            className={`px-5 py-3.5 rounded-2xl text-[10px] font-bold uppercase tracking-widest text-black transition-all hover:translate-x-1 ${
               brandColor === 'green' ? 'hover:bg-green-50 hover:text-green-700' : 'hover:bg-blue-50 hover:text-blue-700'
             }`}
           >
@@ -202,7 +238,7 @@ const MobileSection = ({ title, links, brandColor, onSelect }: any) => (
     </p>
     <div className="pl-4 grid gap-4">
       {links.map((l: any) => (
-        <Link key={l.to} to={l.to} onClick={onSelect} className="text-xl font-medium text-gray-600 hover:text-gray-900 transition-colors">
+        <Link key={l.to} to={l.to} onClick={onSelect} className="text-xl font-medium text-black hover:text-black/70 transition-colors">
           {l.label}
         </Link>
       ))}

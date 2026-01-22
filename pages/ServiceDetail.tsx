@@ -155,13 +155,13 @@ const ServiceDetail: React.FC<{ category: 'personal' | 'commercial' | 'financial
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center mb-32">
           <div className="space-y-8">
-            <h1 className="text-4xl md:text-6xl font-bold text-gray-900 serif leading-tight">{content.headline}</h1>
-            <p className="text-xl text-gray-500 font-light leading-relaxed">{content.mainBody}</p>
+            <h1 className="text-4xl md:text-6xl font-bold text-black serif leading-tight">{content.headline}</h1>
+            <p className="text-xl text-black/70 font-light leading-relaxed">{content.mainBody}</p>
             <div className={`p-8 ${styles.bg} bg-opacity-30 rounded-[2.5rem] border ${styles.border}`}>
-               <h3 className="font-bold text-gray-900 mb-2 flex items-center">
+               <h3 className="font-bold text-black mb-2 flex items-center">
                  <AlertCircle className={`w-5 h-5 mr-2 ${styles.text}`} /> The Distinction
                </h3>
-               <p className="text-sm text-gray-500 font-light leading-relaxed">{content.whyMatters}</p>
+               <p className="text-sm text-black/60 font-light leading-relaxed">{content.whyMatters}</p>
             </div>
           </div>
           <div className="flex justify-center lg:justify-end">
@@ -171,22 +171,22 @@ const ServiceDetail: React.FC<{ category: 'personal' | 'commercial' | 'financial
           </div>
         </div>
 
-        <h2 className="text-3xl font-bold serif text-gray-900 mb-12 text-center">Core Protection Strategies</h2>
+        <h2 className="text-3xl font-bold serif text-black mb-12 text-center">Core Protection Strategies</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-32">
           {content.solutions.map((s, idx) => (
             <div key={idx} className="p-10 bg-white border border-gray-100 rounded-[3rem] hover:shadow-xl transition-all group flex flex-col h-full">
               <div className={`w-10 h-10 ${styles.bg} rounded-xl flex items-center justify-center ${styles.text} mb-6 group-hover:bg-blue-700 group-hover:text-white transition-all`}>
                 <Check className="w-5 h-5" />
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-4">{s.title}</h3>
-              <p className="text-gray-500 text-sm font-light leading-relaxed flex-grow">{s.desc}</p>
+              <h3 className="text-xl font-bold text-black mb-4">{s.title}</h3>
+              <p className="text-black/60 text-sm font-light leading-relaxed flex-grow">{s.desc}</p>
             </div>
           ))}
         </div>
 
-        <section className="bg-gray-900 rounded-[4rem] p-16 lg:p-24 text-white text-center">
+        <section className="bg-black rounded-[4rem] p-16 lg:p-24 text-white text-center">
           <div className="max-w-2xl mx-auto space-y-10">
-            <h2 className="text-4xl font-bold serif">Protecting Your World.</h2>
+            <h2 className="text-4xl font-bold serif text-white">Protecting Your World.</h2>
             <p className="text-blue-100/70 font-light text-lg">Speak with an independent Entrust advisor to audit your existing coverage.</p>
             <div className="flex flex-col sm:flex-row gap-6 justify-center pt-4">
               <Link to="/contact" className={`px-10 py-5 bg-white text-gray-900 rounded-2xl font-bold uppercase tracking-widest text-[10px] ${styles.hover} hover:text-white transition-all`}>
