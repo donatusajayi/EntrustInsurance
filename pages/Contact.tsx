@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Mail, Phone, MapPin, Send, Clock, ShieldCheck, Globe } from 'lucide-react';
-import ChatBot from '../components/ChatBot.tsx';
 
 const Contact: React.FC = () => {
   const [submitted, setSubmitted] = useState(false);
@@ -116,7 +115,6 @@ const Contact: React.FC = () => {
           </div>
         </div>
       </div>
-      <ChatBot />
     </div>
   );
 };

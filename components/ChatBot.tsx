@@ -1,8 +1,8 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { GoogleGenAI } from '@google/genai';
-import { MessageSquare, X, Send, ShieldCheck, User, Sparkles, Phone, Mail, AlertCircle, RefreshCcw, Info } from 'lucide-react';
+import { MessageSquare, X, Send, ShieldCheck, User, Sparkles, Phone, Mail, AlertCircle, RefreshCcw, Info, Terminal } from 'lucide-react';
 
-const STORAGE_KEY = 'entrust_concierge_cache_v3';
+const STORAGE_KEY = 'entrust_concierge_cache_v4';
 
 const SYSTEM_INSTRUCTION = `You are the Entrust Concierge, a high-end AI advisor for Entrust Insurance and Financial Services. 
 
@@ -15,9 +15,9 @@ Entrust is a premier Texas agency (Richardson/DFW) providing:
 TONE: Professional, minimalist, and advisory.
 
 RULES:
-- Limit responses to 2 sentences.
-- Use bold text for key terms.
-- For claims, point them to the 'Claims' page in the menu.
+- Limit responses to 2-3 sentences.
+- Use bold text for important terms.
+- For claims, point them to the 'Claims' link in the footer.
 - For quotes, use the 'Get a Quote' button.
 - Contact: (214) 792-9658 or info@entrustfin.com.`;
 
@@ -35,28 +35,10 @@ const FormattedText: React.FC<{ text: string }> = ({ text }) => {
   );
 };
 
-const ContactCard: React.FC = () => (
-  <div className="mt-4 p-5 bg-blue-700 text-white rounded-[2rem] shadow-xl space-y-4 animate-fade-in-up">
-    <div className="flex items-center space-x-3 border-b border-white/10 pb-3">
-      <ShieldCheck className="w-4 h-4" />
-      <p className="text-[10px] font-bold uppercase tracking-widest text-blue-100">Advisor Direct</p>
-    </div>
-    <div className="space-y-3">
-      <a href="tel:2147929658" className="flex items-center space-x-3 group">
-        <Phone className="w-3.5 h-3.5 opacity-70 group-hover:opacity-100 transition-opacity" />
-        <span className="text-sm font-bold">(214) 792-9658</span>
-      </a>
-      <a href="mailto:info@entrustfin.com" className="flex items-center space-x-3 group">
-        <Mail className="w-3.5 h-3.5 opacity-70 group-hover:opacity-100 transition-opacity" />
-        <span className="text-sm font-bold">info@entrustfin.com</span>
-      </a>
-    </div>
-  </div>
-);
-
 const ChatBot: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [showInvite, setShowInvite] = useState(false);
+  const [showDiagnostics, setShowDiagnostics] = useState(false);
   const [input, setInput] = useState('');
   const [messages, setMessages] = useState<{ role: 'user' | 'model'; text: string; showContactCard?: boolean }[]>(() => {
     try {
@@ -65,17 +47,16 @@ const ChatBot: React.FC = () => {
     } catch { return []; }
   });
   const [isTyping, setIsTyping] = useState(false);
-  const [apiKeyDetected, setApiKeyDetected] = useState<boolean | null>(null);
+  const [apiStatus, setApiStatus] = useState<'unknown' | 'detected' | 'missing'>('unknown');
   const scrollRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    // Enhanced key detection for browser environments
-    const key = process.env.API_KEY || (window as any).process?.env?.API_KEY;
-    setApiKeyDetected(!!key);
+    const key = process.env.API_KEY;
+    setApiStatus(key ? 'detected' : 'missing');
     
     const inviteTimer = setTimeout(() => {
       if (!isOpen && messages.length === 0) setShowInvite(true);
-    }, 5000);
+    }, 6000);
     return () => clearTimeout(inviteTimer);
   }, [isOpen, messages.length]);
 
@@ -84,21 +65,16 @@ const ChatBot: React.FC = () => {
     if (scrollRef.current) scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
   }, [messages, isTyping]);
 
-  const clearChat = () => {
-    setMessages([]);
-    localStorage.removeItem(STORAGE_KEY);
-  };
-
   const handleSend = async (text?: string) => {
     const messageText = text || input;
     if (!messageText.trim()) return;
 
-    const apiKey = process.env.API_KEY || (window as any).process?.env?.API_KEY;
+    const apiKey = process.env.API_KEY;
     
     if (!apiKey) {
       setMessages(prev => [...prev, 
         { role: 'user', text: messageText }, 
-        { role: 'model', text: "**SYSTEM OFFLINE:** The API key is missing. Ensure `API_KEY` is added to Vercel Environment Variables and that you have **Redeployed** the project." }
+        { role: 'model', text: "**CONNECTION ERROR:** I am currently offline. Please ensure the `API_KEY` is correctly configured in your deployment settings and that you have **Redeployed** the site." }
       ]);
       setInput('');
       return;
@@ -110,8 +86,6 @@ const ChatBot: React.FC = () => {
 
     try {
       const ai = new GoogleGenAI({ apiKey });
-      
-      // Strict role alternation for Gemini
       const chatHistory = messages
         .filter((m, i, arr) => i === 0 || m.role !== arr[i-1].role)
         .map(m => ({ parts: [{ text: m.text }], role: m.role }));
@@ -119,30 +93,19 @@ const ChatBot: React.FC = () => {
       const response = await ai.models.generateContent({
         model: 'gemini-3-flash-preview',
         contents: [...chatHistory, { role: 'user', parts: [{ text: messageText }] }],
-        config: { 
-          systemInstruction: SYSTEM_INSTRUCTION, 
-          temperature: 0.3,
-          topK: 40,
-          topP: 0.95
-        }
+        config: { systemInstruction: SYSTEM_INSTRUCTION, temperature: 0.3 }
       });
 
-      const responseText = response.text || "I am processing your inquiry.";
-      const needsContact = /phone|call|email|agent|human|person|speak|contact/i.test(messageText + responseText);
-
-      setMessages(prev => [...prev, { 
-        role: 'model', 
-        text: responseText,
-        showContactCard: needsContact
-      }]);
+      const responseText = response.text || "I am here to assist with your insurance needs.";
+      setMessages(prev => [...prev, { role: 'model', text: responseText }]);
     } catch (error: any) {
-      console.error("Concierge Error:", error);
-      let errorMsg = "I'm having trouble connecting to my knowledge base. Please try again or call us at (214) 792-9658.";
+      console.error("Entrust Concierge Error:", error);
+      let errorMsg = "I encountered an issue connecting to the advisory network. Please reach out to us directly at (214) 792-9658.";
       
       if (error?.message?.includes('403')) {
-        errorMsg = "**SYSTEM ERROR (403):** Access denied. This project likely requires a linked billing account in Google Cloud Console.";
+        errorMsg = "**ADVISORY OFFLINE (403):** Access is restricted. This typically means billing must be enabled in your Google Cloud project.";
       } else if (error?.message?.includes('401')) {
-        errorMsg = "**SYSTEM ERROR (401):** Invalid API Key. Please verify the key in Vercel settings.";
+        errorMsg = "**ADVISORY OFFLINE (401):** The provided API key is unauthorized or invalid.";
       }
 
       setMessages(prev => [...prev, { role: 'model', text: errorMsg }]);
@@ -156,9 +119,9 @@ const ChatBot: React.FC = () => {
       {showInvite && !isOpen && (
         <div className="absolute bottom-20 right-0 w-[280px] animate-fade-in-up">
            <div className="relative bg-white p-6 rounded-[2.5rem] shadow-2xl border border-blue-50">
-              <button onClick={() => setShowInvite(false)} className="absolute top-4 right-4 text-black/20 hover:text-black/40 transition-colors"><X className="w-3 h-3" /></button>
+              <button onClick={() => setShowInvite(false)} className="absolute top-4 right-4 text-black/20 hover:text-black/40"><X className="w-3 h-3" /></button>
               <div className="cursor-pointer space-y-2" onClick={() => { setIsOpen(true); setShowInvite(false); }}>
-                <p className="text-sm font-bold text-black serif italic leading-relaxed">"How can I assist with your protection or financial strategy today?"</p>
+                <p className="text-sm font-bold text-black serif italic leading-relaxed">"How can I assist with your protection strategy today?"</p>
                 <div className="flex items-center text-[10px] font-bold text-blue-700 uppercase tracking-widest mt-2">Open Concierge <Sparkles className="ml-1.5 w-3 h-3" /></div>
               </div>
               <div className="absolute -bottom-2 right-8 w-4 h-4 bg-white border-r border-b border-blue-50 rotate-45"></div>
@@ -170,7 +133,6 @@ const ChatBot: React.FC = () => {
         <button 
           onClick={() => { setIsOpen(true); setShowInvite(false); }} 
           className="group w-16 h-16 bg-blue-700 text-white rounded-full flex items-center justify-center shadow-2xl hover:scale-110 active:scale-95 transition-all"
-          aria-label="Open Chat"
         >
           <MessageSquare className="w-7 h-7" />
         </button>
@@ -186,37 +148,56 @@ const ChatBot: React.FC = () => {
               </div>
               <div>
                 <h3 className="font-bold text-sm serif text-black leading-none mb-1.5">Entrust Concierge</h3>
-                <div className="flex items-center space-x-2">
-                  <span className={`w-1.5 h-1.5 rounded-full ${apiKeyDetected ? 'bg-green-500 animate-pulse' : 'bg-red-500'}`}></span>
-                  <span className="text-[9px] font-bold uppercase tracking-[0.2em] text-black/40">
-                    {apiKeyDetected ? 'Advisor Online' : 'System Offline'}
+                <button 
+                  onClick={() => setShowDiagnostics(!showDiagnostics)}
+                  className="flex items-center space-x-2 group/status"
+                >
+                  <span className={`w-1.5 h-1.5 rounded-full ${apiStatus === 'detected' ? 'bg-green-500 animate-pulse' : 'bg-red-500'}`}></span>
+                  <span className="text-[9px] font-bold uppercase tracking-[0.2em] text-black/40 group-hover/status:text-blue-600 transition-colors">
+                    {apiStatus === 'detected' ? 'System Online' : 'System Offline'}
                   </span>
+                </button>
+              </div>
+            </div>
+            <button onClick={() => setIsOpen(false)} className="p-2 hover:bg-gray-50 rounded-full text-black/30 transition-colors"><X className="w-5 h-5" /></button>
+          </div>
+
+          {/* Diagnostics Overlay */}
+          {showDiagnostics && (
+            <div className="absolute top-20 left-6 right-6 p-6 bg-gray-900 rounded-3xl z-50 text-white shadow-2xl border border-white/10 animate-fade-in-up">
+              <div className="flex justify-between items-center mb-4">
+                <h4 className="text-[10px] font-black uppercase tracking-widest text-blue-400 flex items-center">
+                  <Terminal className="w-3 h-3 mr-2" /> System Diagnostics
+                </h4>
+                <button onClick={() => setShowDiagnostics(false)}><X className="w-3 h-3 opacity-40" /></button>
+              </div>
+              <div className="space-y-3 font-mono text-[10px]">
+                <div className="flex justify-between"><span>ENV_KEY_FOUND:</span> <span className={apiStatus === 'detected' ? 'text-green-400' : 'text-red-400'}>{apiStatus === 'detected' ? 'TRUE' : 'FALSE'}</span></div>
+                <div className="flex justify-between"><span>MODEL_TARGET:</span> <span className="text-blue-300">gemini-3-flash</span></div>
+                <div className="pt-2 border-t border-white/10 text-white/40 italic">
+                  Note: If FALSE, verify Vercel Env Vars and ensure you have REDEPLOYED.
                 </div>
               </div>
             </div>
-            <div className="flex items-center space-x-1">
-              <button onClick={clearChat} title="Reset Chat" className="p-2 hover:bg-gray-50 rounded-full text-black/20 hover:text-black/40 transition-colors"><RefreshCcw className="w-4 h-4" /></button>
-              <button onClick={() => setIsOpen(false)} className="p-2 hover:bg-gray-50 rounded-full text-black/30 hover:text-black/60 transition-colors"><X className="w-5 h-5" /></button>
-            </div>
-          </div>
+          )}
 
           {/* Messages */}
           <div ref={scrollRef} className="flex-grow overflow-y-auto p-6 space-y-6 bg-slate-50/20">
             {messages.length === 0 && (
               <div className="h-full flex flex-col justify-center text-center space-y-8 py-10">
                 <div className="space-y-3">
-                  <div className="w-16 h-16 bg-blue-50 rounded-[2rem] flex items-center justify-center text-blue-700 mx-auto mb-4 border border-blue-100 shadow-sm">
+                  <div className="w-16 h-16 bg-blue-50 rounded-[2rem] flex items-center justify-center text-blue-700 mx-auto mb-4">
                     <Sparkles className="w-8 h-8" />
                   </div>
-                  <h4 className="text-2xl font-bold serif text-black px-10 leading-snug">Expert Guidance for Texas Success.</h4>
-                  <p className="text-[10px] text-black/30 font-bold uppercase tracking-[0.2em]">Select an advisory service</p>
+                  <h4 className="text-2xl font-bold serif text-black px-10">Professional Advisory.</h4>
+                  <p className="text-[10px] text-black/30 font-bold uppercase tracking-[0.2em]">Select a specialized service</p>
                 </div>
                 <div className="grid grid-cols-1 gap-3 px-10">
-                  {['Auto Insurance Quote', 'Business Risk Audit', 'Tax Preparation', 'Travel Concierge'].map((label) => (
+                  {['Personal Insurance Quote', 'Business Risk Audit', 'Tax Preparation', 'Travel Concierge'].map((label) => (
                     <button 
                       key={label} 
                       onClick={() => handleSend(label)} 
-                      className="p-4 bg-white border border-gray-100 rounded-2xl text-[10px] font-bold uppercase tracking-widest text-black/60 hover:border-blue-700 hover:text-blue-700 hover:shadow-xl hover:-translate-y-0.5 transition-all"
+                      className="p-4 bg-white border border-gray-100 rounded-2xl text-[10px] font-bold uppercase tracking-widest text-black/60 hover:border-blue-700 hover:text-blue-700 hover:shadow-xl transition-all"
                     >
                       {label}
                     </button>
@@ -231,42 +212,22 @@ const ChatBot: React.FC = () => {
                   <div className={`w-8 h-8 rounded-xl flex items-center justify-center shrink-0 mt-1 shadow-sm border ${m.role === 'user' ? 'bg-black text-white border-black' : 'bg-white text-blue-700 border-gray-100'}`}>
                     {m.role === 'user' ? <User className="w-4 h-4" /> : <ShieldCheck className="w-4 h-4" />}
                   </div>
-                  <div className="flex flex-col">
-                    <div className={`p-4 rounded-2xl text-[13px] leading-relaxed shadow-sm ${m.role === 'user' ? 'bg-black text-white rounded-tr-none' : 'bg-white text-black border border-gray-100 rounded-tl-none'}`}>
-                      <FormattedText text={m.text} />
-                    </div>
-                    {m.showContactCard && <ContactCard />}
+                  <div className={`p-4 rounded-2xl text-[13px] leading-relaxed shadow-sm ${m.role === 'user' ? 'bg-black text-white rounded-tr-none' : 'bg-white text-black border border-gray-100 rounded-tl-none'}`}>
+                    <FormattedText text={m.text} />
                   </div>
                 </div>
               </div>
             ))}
             {isTyping && (
               <div className="flex items-center space-x-2 px-11">
-                <div className="flex space-x-1">
-                  <span className="w-1.5 h-1.5 bg-blue-400 rounded-full animate-bounce [animation-delay:-0.3s]"></span>
-                  <span className="w-1.5 h-1.5 bg-blue-400 rounded-full animate-bounce [animation-delay:-0.15s]"></span>
-                  <span className="w-1.5 h-1.5 bg-blue-400 rounded-full animate-bounce"></span>
-                </div>
-                <span className="text-[9px] text-black/20 font-bold uppercase tracking-widest ml-2">Advisor Thinking...</span>
-              </div>
-            )}
-
-            {!apiKeyDetected && messages.length > 0 && (
-              <div className="mx-6 p-5 bg-red-50 rounded-2xl border border-red-100 flex items-start space-x-3 shadow-sm">
-                <AlertCircle className="w-4 h-4 text-red-600 shrink-0 mt-0.5" />
-                <div className="space-y-1">
-                  <p className="text-[10px] text-red-900 font-bold uppercase tracking-widest">Configuration Required</p>
-                  <p className="text-[11px] text-red-800/80 leading-relaxed">
-                    The <code>API_KEY</code> is missing from the browser environment. Add it to your Vercel project settings and **redeploy** to fix this.
-                  </p>
-                </div>
+                <div className="flex space-x-1"><span className="w-1.5 h-1.5 bg-blue-400 rounded-full animate-bounce [animation-delay:-0.3s]"></span><span className="w-1.5 h-1.5 bg-blue-400 rounded-full animate-bounce [animation-delay:-0.15s]"></span><span className="w-1.5 h-1.5 bg-blue-400 rounded-full animate-bounce"></span></div>
               </div>
             )}
           </div>
 
           {/* Input */}
           <div className="p-6 bg-white border-t border-gray-50 shrink-0">
-            <form onSubmit={(e) => { e.preventDefault(); handleSend(); }} className="relative group">
+            <form onSubmit={(e) => { e.preventDefault(); handleSend(); }} className="relative">
               <input 
                 value={input} 
                 onChange={(e) => setInput(e.target.value)} 
@@ -275,17 +236,13 @@ const ChatBot: React.FC = () => {
               />
               <button 
                 type="submit" 
-                className="absolute right-2 top-2 w-10 h-10 bg-blue-700 text-white rounded-xl flex items-center justify-center shadow-lg hover:bg-blue-800 transition-all active:scale-90 disabled:opacity-30 disabled:pointer-events-none" 
+                className="absolute right-2 top-2 w-10 h-10 bg-blue-700 text-white rounded-xl flex items-center justify-center shadow-lg hover:bg-blue-800 transition-all disabled:opacity-30" 
                 disabled={!input.trim() || isTyping}
-                title="Send Message"
               >
                 <Send className="w-4 h-4" />
               </button>
             </form>
-            <div className="flex items-center justify-center space-x-2 mt-4">
-              <Info className="w-2.5 h-2.5 text-black/20" />
-              <p className="text-[9px] text-center text-black/20 font-bold uppercase tracking-[0.2em]">Secured by Entrust Intelligence</p>
-            </div>
+            <p className="text-[9px] text-center text-black/20 font-bold uppercase tracking-[0.2em] mt-4">Secured by Entrust Intelligence</p>
           </div>
         </div>
       )}

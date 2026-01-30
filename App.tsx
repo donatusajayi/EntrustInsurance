@@ -2,6 +2,7 @@ import React from 'react';
 import { HashRouter, Routes, Route, useLocation } from 'react-router-dom';
 import Navbar from './components/Navbar.tsx';
 import Footer from './components/Footer.tsx';
+import ChatBot from './components/ChatBot.tsx';
 import Home from './pages/Home.tsx';
 import PersonalMain from './pages/PersonalMain.tsx';
 import CommercialMain from './pages/CommercialMain.tsx';
@@ -50,6 +51,7 @@ const App: React.FC = () => {
           </Routes>
         </main>
         <Footer />
+        <ChatBot />
       </div>
     </HashRouter>
   );
