@@ -62,7 +62,7 @@ const Footer: React.FC = () => {
       </div>
 
       <div className="max-w-7xl mx-auto px-6 mt-32 pt-12 border-t border-gray-50 flex flex-col md:flex-row justify-between items-center gap-6 text-[10px] font-bold uppercase tracking-widest text-gray-400">
-        <p>© 2025 Entrust Insurance and Financial Services. All Rights Reserved.</p>
+        <p>© 2026 Entrust Insurance and Financial Services. All Rights Reserved.</p>
         <div className="flex space-x-8">
           <Link to="/privacy" className="hover:text-blue-700">Privacy Policy</Link>
           <Link to="/terms" className="hover:text-blue-700">Terms of Service</Link>
